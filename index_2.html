@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карта AI-перехода · День 2 — Карта Точки А (5 кругов)</title>
+<meta name="description" content="Диагностика твоей экспертизы: 5 кругов (икигай + Zone of Genius + AI-фактор). Готовый AI-промпт самодиагностики + бонус «Совет 6 экспертов». Урок 2 марафона.">
+<meta name="theme-color" content="#E2542B">
+<meta name="author" content="Станислав Цыс">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Карта AI-перехода · День 2 — Карта Точки А (5 кругов)">
+<meta property="og:description" content="Диагностика твоей экспертизы: 5 кругов (икигай + Zone of Genius + AI-фактор). Готовый AI-промпт самодиагностики + бонус «Совет 6 экспертов». Урок 2 марафона.">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Карта AI-перехода · День 2 — Карта Точки А (5 кругов)">
+<meta name="twitter:description" content="Диагностика твоей экспертизы: 5 кругов (икигай + Zone of Genius + AI-фактор). Готовый AI-промпт самодиагностики + бонус «Совет 6 экспертов». Урок 2 марафона.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   КАРТА AI-ПЕРЕХОДА · День 1 — V2 «КАРУСЕЛЬ»
+   Кремовая миллиметровка · сверхжирный Golos · коралл · моно-лейблы
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root{
+  --paper:      #ECE7DB;   /* кремовый холст */
+  --paper-2:    #F3EFE5;   /* карточки */
+  --grid:       rgba(54,44,28,.09);  /* линии миллиметровки */
+  --grid-strong:rgba(54,44,28,.16);
+  --paper-line: #D6CEBC;
+
+  --ink:        #1A1712;   /* почти-чёрный тёплый */
+  --ink-2:      #221E18;
+  --ink-grid:   rgba(255,250,238,.06);
+  --ink-line:   #3A342A;
+
+  --coral:      #E2542B;
+  --c1:#1F8A5B; --c2:#D32F2F; --c3:#E8A21C; --c4:#4A90C2; --c5:#E2542B; /* круги интерактива */
+  --accent:     var(--coral);
+  --green:      #1F8A5B;   /* семантика «растёт» */
+  --amber:      #E8A21C;
+  --red:        #D32F2F;
+
+  --on-paper:      #211C14;  /* заголовки */
+  --on-paper-soft: #6B6253;  /* подзаголовки */
+  --on-paper-faint:#A99D87;
+  --on-ink:        #F2EDE2;
+  --on-ink-soft:   #B7AE9D;
+  --on-ink-faint:  #6E6555;
+
+  --font-display: 'Golos Text', system-ui, sans-serif;
+  --font-body:    'Golos Text', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif:   'Golos Text', sans-serif;
+
+  --pad-x: clamp(24px, 6vw, 128px);
+  --maxw: 1280px;
+}
+
+/* ---------- Reset / base ---------- */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; scroll-snap-type:y proximity; }
+body{
+  font-family:var(--font-body);
+  color:var(--on-paper);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:34px 34px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body.no-grid{ background-image:none; }
+.deck{ }
+
+/* ---------- Slide ---------- */
+.slide{
+  position:relative;
+  min-height:100vh;
+  scroll-snap-align:start;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(80px,11vh,140px) var(--pad-x) clamp(64px,9vh,110px);
+  overflow:visible;
+}
+.slide__inner{ width:100%; max-width:var(--maxw); margin:0 auto; }
+
+/* фоновые режимы (s-paper и s-deep = основной кремовый; s-dark = тёмный; s-green = коралл-разделитель) */
+.s-paper, .s-deep{ background:transparent; color:var(--on-paper); }
+.s-dark{
+  background-color:var(--ink); color:var(--on-ink);
+  background-image:
+    linear-gradient(var(--ink-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ink-grid) 1px, transparent 1px);
+  background-size:34px 34px;
+}
+body.no-grid .s-dark{ background-image:none; }
+.s-green{ background-color:var(--coral); color:#FCEEE7; background-image:none; }
+
+/* ---------- Kicker (mono, coral) ---------- */
+.kicker{
+  font-family:var(--font-mono);
+  font-size:clamp(12px,1.05vw,15px);
+  font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent);
+  display:inline-flex; align-items:center; gap:.7em;
+  margin-bottom:clamp(18px,2.6vh,30px);
+}
+.kicker .num{ color:var(--accent); }
+.s-dark .kicker{ color:var(--coral); }
+.s-green .kicker{ color:#FCEEE7; }
+
+.eyebrow{
+  font-family:var(--font-mono); font-weight:600;
+  font-size:clamp(12px,1vw,14px); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:14px;
+}
+
+/* ---------- Type scale (heavy grotesque) ---------- */
+.h-display{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(46px,7.2vw,124px); line-height:0.92;
+  letter-spacing:-0.025em; text-wrap:balance;
+}
+.h1{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(36px,5.2vw,90px); line-height:0.98;
+  letter-spacing:-0.022em; text-wrap:balance;
+}
+.h2{
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(28px,3.7vw,58px); line-height:1.02;
+  letter-spacing:-0.018em; text-wrap:balance;
+}
+.h3{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(20px,2vw,31px); line-height:1.12; letter-spacing:-0.01em;
+}
+.lead{
+  font-family:var(--font-body); font-weight:600; font-style:normal;
+  font-size:clamp(19px,2.05vw,30px); line-height:1.32; color:var(--on-paper-soft);
+}
+.s-dark .lead{ color:var(--on-ink-soft); }
+.s-green .lead{ color:#FBE6DC; }
+.body{ font-size:clamp(16px,1.25vw,20px); line-height:1.5; font-weight:500; }
+.small{ font-size:clamp(14px,1vw,16px); line-height:1.5; font-weight:500; }
+
+.accent{ color:var(--accent); }
+.green-t{ color:var(--green); }
+em.ser{ font-style:normal; font-weight:600; color:var(--on-paper-soft); }
+.s-dark em.ser{ color:var(--on-ink-soft); }
+strong{ font-weight:800; }
+
+.soft{ color:var(--on-paper-soft); }
+.s-dark .soft{ color:var(--on-ink-soft); }
+.s-green .soft{ color:#FBE6DC; }
+
+/* ---------- Big numbers ---------- */
+.bignum{
+  font-family:var(--font-display); font-weight:900; line-height:0.86;
+  letter-spacing:-0.04em; font-size:clamp(64px,13vw,224px); color:var(--accent);
+}
+.midnum{
+  font-family:var(--font-display); font-weight:900; line-height:0.9;
+  letter-spacing:-0.035em; font-size:clamp(48px,7vw,120px); color:var(--accent);
+}
+
+/* ---------- Anchors / chips ---------- */
+.anchors{ display:flex; flex-wrap:wrap; gap:clamp(12px,1.6vw,22px); align-items:center; }
+.anchor{
+  font-family:var(--font-mono); font-weight:500;
+  font-size:clamp(13px,1.05vw,16px); letter-spacing:.03em;
+  padding:9px 18px; border:1.5px solid var(--on-paper); border-radius:100px;
+  color:var(--on-paper); white-space:nowrap;
+}
+.s-dark .anchor{ border-color:var(--on-ink-soft); color:var(--on-ink); }
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:13px; letter-spacing:.03em; font-weight:500;
+  padding:7px 14px; border-radius:100px; border:1.5px solid var(--paper-line);
+}
+
+/* ---------- Footnote ---------- */
+.foot{
+  font-family:var(--font-body); font-weight:500; font-style:normal;
+  font-size:clamp(14px,1.2vw,18px); line-height:1.42; color:var(--on-paper-soft);
+}
+.s-dark .foot{ color:var(--on-ink-soft); }
+.s-green .foot{ color:#FBE6DC; }
+
+/* ---------- Source ---------- */
+.source{
+  font-family:var(--font-mono); font-weight:400;
+  font-size:clamp(10px,.82vw,12.5px); letter-spacing:.02em;
+  color:var(--on-paper-faint); margin-top:clamp(20px,3vh,40px);
+  display:flex; align-items:flex-start; gap:.6em; word-break:break-word;
+}
+.s-dark .source{ color:var(--on-ink-faint); }
+.source .tag{ color:var(--accent); flex:none; font-weight:600; }
+
+/* ---------- Grids / cards ---------- */
+.grid{ display:grid; gap:clamp(16px,1.8vw,28px); }
+.g2{ grid-template-columns:repeat(2,1fr); }
+.g3{ grid-template-columns:repeat(3,1fr); }
+.g4{ grid-template-columns:repeat(4,1fr); }
+@media(max-width:860px){ .g2,.g3,.g4{ grid-template-columns:1fr; } }
+
+.card{
+  border:1.5px solid var(--paper-line); border-radius:10px;
+  padding:clamp(22px,2.2vw,34px); background:var(--paper-2);
+}
+.s-dark .card{ border-color:var(--ink-line); background:var(--ink-2); }
+.card .idx{
+  font-family:var(--font-mono); font-size:13px; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:16px;
+}
+
+/* ---------- Numbered list ---------- */
+.numlist{ display:flex; flex-direction:column; gap:clamp(22px,4vh,46px); }
+.numitem{ display:grid; grid-template-columns:auto 1fr; gap:clamp(20px,2.5vw,40px); align-items:start; }
+.numitem > *{ min-width:0; }
+.numitem .n{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(56px,8vw,140px); line-height:.8; color:var(--accent); letter-spacing:-0.05em;
+}
+
+/* ---------- Timeline ---------- */
+.timeline{ display:flex; gap:0; position:relative; }
+.timeline::before{ content:""; position:absolute; left:0; right:0; top:18px; height:2px; background:var(--paper-line); }
+.s-dark .timeline::before{ background:var(--ink-line); }
+.tnode{ flex:1; position:relative; padding-right:24px; }
+.tnode .dot{ width:14px; height:14px; border-radius:50%; background:var(--on-paper-faint); position:relative; z-index:1; margin-bottom:20px; outline:6px solid var(--paper); }
+.s-dark .tnode .dot{ outline-color:var(--ink); background:var(--on-ink-faint); }
+.tnode.hot .dot{ background:var(--accent); width:20px; height:20px; margin-top:-3px; }
+.tnode .yr{ font-family:var(--font-display); font-weight:900; font-size:clamp(20px,2.2vw,34px); }
+.tnode.hot .yr{ color:var(--accent); }
+.tnode .desc{ font-size:clamp(13px,.95vw,16px); line-height:1.38; color:var(--on-paper-soft); margin-top:8px; font-weight:500; }
+.s-dark .tnode .desc{ color:var(--on-ink-soft); }
+@media(max-width:860px){
+  .timeline{ flex-direction:column; gap:24px; }
+  .timeline::before{ left:6px; right:auto; top:0; bottom:0; width:2px; height:auto; }
+  .tnode{ padding-left:34px; padding-right:0; }
+  .tnode .dot{ position:absolute; left:0; top:4px; margin:0; }
+}
+
+/* ---------- Bars ---------- */
+.bars{ display:flex; flex-direction:column; gap:14px; }
+.bar{ display:grid; grid-template-columns:minmax(140px,200px) 1fr auto; gap:18px; align-items:center; min-width:0; }
+.bar > *{ min-width:0; }
+.bar .lab{ font-size:clamp(14px,1.1vw,18px); font-weight:600; }
+.bar .track{ height:clamp(26px,3vh,40px); border-radius:5px; background:var(--on-paper-faint); }
+.s-dark .bar .track{ background:var(--ink-line); }
+.bar.hot .track{ background:var(--accent); }
+.bar .val{ font-family:var(--font-display); font-weight:900; font-size:clamp(16px,1.4vw,22px); white-space:nowrap; }
+.bar.hot .val{ color:var(--accent); }
+
+/* ---------- Split / rank ---------- */
+.split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3vw,56px); }
+@media(max-width:860px){ .split{ grid-template-columns:1fr; } }
+.col-head{ font-family:var(--font-mono); font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-bottom:22px; display:flex; align-items:center; gap:10px; }
+.rank{ display:flex; flex-direction:column; gap:12px; }
+.rank li{ list-style:none; display:flex; gap:14px; align-items:baseline; padding-bottom:12px; border-bottom:1.5px solid var(--paper-line); }
+.s-dark .rank li{ border-color:var(--ink-line); }
+.rank .r{ font-family:var(--font-mono); font-size:13px; color:var(--on-paper-faint); width:1.4em; flex:none; }
+.rank b{ font-size:clamp(15px,1.2vw,19px); font-weight:700; }
+.dn{ color:var(--red); } .up{ color:var(--green); }
+
+/* ---------- Row table ---------- */
+.rowtable{ display:flex; flex-direction:column; }
+.rowtable .tr{ display:grid; grid-template-columns:1fr 1.2fr; gap:clamp(20px,3vw,56px); padding:clamp(15px,2vh,24px) 0; border-top:1.5px solid var(--paper-line); }
+.s-dark .rowtable .tr{ border-color:var(--ink-line); }
+.rowtable .tr:last-child{ border-bottom:1.5px solid var(--paper-line); }
+.s-dark .rowtable .tr:last-child{ border-color:var(--ink-line); }
+.rowtable .q{ font-weight:800; font-size:clamp(15px,1.3vw,20px); }
+.rowtable .a{ font-size:clamp(14px,1.1vw,18px); line-height:1.42; color:var(--on-paper-soft); font-weight:500; }
+.s-dark .rowtable .a{ color:var(--on-ink-soft); }
+.rowtable .thead{ font-family:var(--font-mono); font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--on-paper-faint); border-top:none; padding-bottom:6px; }
+@media(max-width:760px){ .rowtable .tr{ grid-template-columns:1fr !important; gap:8px; } .rowtable .thead{ display:none; } }
+
+/* ---------- Formula ---------- */
+.formula{ font-family:var(--font-display); font-weight:900; font-size:clamp(26px,4.2vw,70px); line-height:1.02; letter-spacing:-0.02em; text-wrap:balance; }
+.formula .op{ color:var(--accent); font-weight:500; padding:0 .12em; }
+
+/* ---------- Dot matrix ---------- */
+.matrix-wrap{ display:flex; flex-direction:column; gap:24px; }
+.matrix{ display:grid; grid-template-columns:repeat(50,1fr); gap:clamp(2px,.35vw,5px); width:100%; max-width:620px; }
+.matrix i{ aspect-ratio:1; border-radius:50%; background:#C6BBA6; }
+.matrix i.g{ background:var(--green); }
+.matrix i.y{ background:var(--amber); }
+.matrix i.r{ background:var(--coral); }
+.legend{ display:flex; flex-direction:column; gap:14px; }
+.legrow{ display:flex; gap:12px; align-items:baseline; }
+.legrow .sw{ width:14px; height:14px; border-radius:50%; flex:none; position:relative; top:2px; }
+.legrow .pct{ font-family:var(--font-display); font-weight:900; font-size:clamp(20px,2vw,30px); width:2.6em; flex:none; }
+
+/* ---------- Plashka (callout) ---------- */
+.plashka{
+  border-left:4px solid var(--accent);
+  padding:clamp(15px,2vh,22px) clamp(20px,2.4vw,30px);
+  background:var(--paper-2);
+  font-family:var(--font-body); font-weight:600; font-style:normal;
+  font-size:clamp(16px,1.45vw,23px); line-height:1.36;
+  border-radius:0 8px 8px 0;
+}
+.s-dark .plashka{ background:var(--ink-2); }
+.plashka.green{ border-color:var(--green); }
+
+/* ---------- Divider (coral act break) ---------- */
+.divider{ justify-content:center; }
+.divider .act-no{ font-family:var(--font-mono); font-weight:600; font-size:clamp(13px,1.2vw,16px); letter-spacing:.28em; text-transform:uppercase; color:#FCEEE7; margin-bottom:24px; }
+.divider .act-title{ font-family:var(--font-display); font-weight:900; font-size:clamp(50px,10.5vw,180px); line-height:0.9; letter-spacing:-0.035em; text-wrap:balance; color:#FFFFFF; }
+.divider .act-sub{ font-family:var(--font-body); font-weight:600; font-size:clamp(18px,2vw,30px); color:#FBE6DC; margin-top:24px; max-width:18em; }
+
+/* ---------- Carousel chrome ---------- */
+.progress{ position:fixed; top:0; left:0; height:3px; width:0; background:var(--accent); z-index:60; transition:width .15s linear; }
+
+.bookmark{
+  position:fixed; top:0; left:clamp(20px,4vw,52px); z-index:60;
+  display:flex; align-items:center; gap:12px; padding-top:14px;
+  pointer-events:none;
+}
+.bookmark .flag{
+  width:26px; height:42px; background:var(--accent); flex:none;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+.bookmark .pg{ font-family:var(--font-mono); font-weight:700; font-size:clamp(15px,1.4vw,20px); letter-spacing:.04em; color:var(--on-paper); }
+.bookmark .pgtot{ font-family:var(--font-mono); font-weight:500; font-size:clamp(12px,1vw,15px); color:var(--on-paper-faint); }
+
+.act-tag{
+  position:fixed; top:clamp(16px,2.6vh,26px); right:clamp(20px,4vw,52px); z-index:60;
+  font-family:var(--font-mono); font-weight:600; font-size:clamp(11px,1vw,13px);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--on-paper-soft);
+  padding:7px 14px; border:1.5px solid var(--paper-line); border-radius:100px;
+  background:rgba(236,231,219,.6); backdrop-filter:blur(6px);
+}
+.handle{
+  position:fixed; left:clamp(20px,4vw,52px); bottom:clamp(18px,3vh,32px); z-index:60;
+  font-family:var(--font-mono); font-weight:700; font-size:clamp(13px,1.15vw,17px);
+  letter-spacing:.02em; color:var(--on-paper);
+}
+.next-arrow,
+.prev-arrow{
+  position:fixed; bottom:clamp(16px,3vh,30px); z-index:60;
+  width:clamp(46px,4vw,58px); height:clamp(46px,4vw,58px); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; text-decoration:none;
+  font-size:clamp(20px,2vw,26px); color:#fff; background:var(--accent);
+  box-shadow:0 4px 16px rgba(226,84,43,.35); transition:transform .2s, background .2s, opacity .2s;
+}
+.next-arrow{ right:clamp(20px,4vw,52px); }
+.prev-arrow{ left:clamp(20px,4vw,52px); }
+.next-arrow:hover,
+.prev-arrow:hover{ transform:translateY(-2px); }
+.next-arrow.is-disabled,
+.prev-arrow.is-disabled{ opacity:.35; pointer-events:none; }
+
+/* chrome adapts to bg */
+body[data-bg="ink"] .bookmark .pg{ color:var(--on-ink); }
+body[data-bg="ink"] .bookmark .pgtot{ color:var(--on-ink-faint); }
+body[data-bg="ink"] .act-tag{ color:var(--on-ink-soft); border-color:var(--ink-line); background:rgba(26,23,18,.5); }
+body[data-bg="ink"] .handle{ color:var(--on-ink); }
+body[data-bg="coral"] .bookmark .flag{ background:#fff; }
+body[data-bg="coral"] .bookmark .pg{ color:#fff; }
+body[data-bg="coral"] .bookmark .pgtot{ color:#FBE6DC; }
+body[data-bg="coral"] .act-tag{ color:#FCEEE7; border-color:rgba(255,255,255,.4); background:rgba(226,84,43,.3); }
+body[data-bg="coral"] .handle{ color:#fff; }
+body[data-bg="coral"] .next-arrow,
+body[data-bg="coral"] .prev-arrow{ background:#fff; color:var(--coral); box-shadow:0 4px 16px rgba(0,0,0,.18); }
+body[data-bg="coral"] .progress{ background:#fff; }
+
+/* ---------- Scroll hint ---------- */
+.scroll-hint{ position:absolute; left:50%; bottom:clamp(22px,4vh,40px); transform:translateX(-50%); font-family:var(--font-mono); font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--on-paper-faint); display:flex; flex-direction:column; align-items:center; gap:10px; animation:bob 2.4s ease-in-out infinite; }
+.s-dark .scroll-hint{ color:var(--on-ink-faint); }
+.scroll-hint .ar{ width:1px; height:30px; background:linear-gradient(var(--on-paper-faint),transparent); }
+@keyframes bob{ 0%,100%{ transform:translate(-50%,0);} 50%{ transform:translate(-50%,6px);} }
+
+/* ---------- Entrance (transform-only) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes riseIn{ from{ transform:translateY(30px); } to{ transform:none; } }
+  .slide[data-deck-active] [data-rise]{ animation:riseIn .7s cubic-bezier(.2,.7,.2,1); }
+  .slide[data-deck-active] [data-rise="2"]{ animation-delay:.07s; }
+  .slide[data-deck-active] [data-rise="3"]{ animation-delay:.14s; }
+  .slide[data-deck-active] [data-rise="4"]{ animation-delay:.21s; }
+  .slide[data-deck-active] [data-rise="5"]{ animation-delay:.28s; }
+}
+
+/* ---------- Utilities ---------- */
+.mt-s{ margin-top:clamp(14px,2vh,22px); }
+.mt-m{ margin-top:clamp(22px,3.4vh,40px); }
+.mt-l{ margin-top:clamp(34px,5vh,64px); }
+.row{ display:flex; gap:clamp(14px,2vw,28px); flex-wrap:wrap; align-items:center; }
+.maxw-s{ max-width:760px; } .maxw-m{ max-width:980px; }
+.stack{ display:flex; flex-direction:column; }
+
+/* ---------- Адаптивные правила (синк с Днём 1) ---------- */
+@media(max-width:860px){
+  /* inline grid-template-columns теряет силу — стекание в 1 колонку */
+  [style*="grid-template-columns"]{ grid-template-columns:1fr !important; }
+}
+@media(max-width:520px){
+  .slide{ padding-top:clamp(72px,10vh,100px); padding-bottom:clamp(56px,8vh,80px); }
+  .bar{ grid-template-columns:1fr auto !important; }
+  .bar .track{ grid-column:1 / -1; }
+}
+.row{ flex-wrap:wrap; }
+/* .formula гибкая на узких — уменьшаем верх */
+@media(max-width:760px){
+  .formula{ font-size:clamp(24px,5.6vw,52px); }
+}
+/* большие числа и денежные значения — без переноса */
+.nowrap{ white-space:nowrap; }
+
+/* ---------- Слайд 5 · карточка-кейс с 4 блоками + вердикт ---------- */
+.case-card{
+  display:flex; flex-direction:column;
+  gap:clamp(12px,1.5vh,18px);
+  padding:clamp(20px,2vw,28px);
+}
+.case-head{
+  display:flex; flex-direction:column; gap:4px;
+  padding-bottom:clamp(10px,1.4vh,16px);
+  border-bottom:1.5px solid var(--paper-line);
+}
+.s-dark .case-head{ border-color:var(--ink-line); }
+.case-num{ font-size:18px; line-height:1; }
+.case-name{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(22px,2.2vw,30px); line-height:1;
+  letter-spacing:-.015em; color:var(--on-paper);
+  margin-top:6px;
+}
+.case-meta{
+  font-family:var(--font-mono); font-size:11px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:var(--on-paper-soft);
+}
+.case-block{ display:flex; flex-direction:column; gap:6px; }
+.case-label{
+  font-family:var(--font-mono); font-size:11px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:var(--on-paper-soft);
+}
+.case-label.was{ color:#C04A28; }
+.case-label.did{ color:var(--on-paper); }
+.case-label.fail{ color:var(--red); }
+.case-label.fix{ color:var(--green); }
+.case-block p{
+  font-family:var(--font-body); font-weight:500;
+  font-size:clamp(13px,.96vw,15.5px); line-height:1.48;
+  color:var(--on-paper);
+}
+.case-verdict{
+  margin-top:auto;
+  padding-top:clamp(14px,1.8vh,20px);
+  border-top:1.5px solid var(--paper-line);
+  display:flex; flex-direction:column; gap:4px;
+}
+.s-dark .case-verdict{ border-color:var(--ink-line); }
+.case-verdict__label{
+  font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--on-paper-soft);
+  margin-bottom:2px;
+}
+.case-verdict__missing{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(15px,1.4vw,20px); line-height:1.15;
+  color:var(--red); letter-spacing:-.005em;
+}
+.case-verdict__has{
+  font-family:var(--font-mono); font-weight:500;
+  font-size:clamp(11.5px,.9vw,13.5px); letter-spacing:.04em;
+  color:var(--green);
+}
+/* очень узкие экраны: длинные денежные nowrap-строки в кейсах рвали бы карточку — разрешаем перенос */
+@media(max-width:400px){
+  .case-block p strong[style*="nowrap"]{ white-space:normal !important; }
+}
+
+/* ---------- Слайд 12 · мини-Венны в карточках ---------- */
+.mini-venn{ width:clamp(92px,11vw,122px); margin:0 auto clamp(10px,1.4vh,16px); }
+.mini-venn svg{ width:100%; height:auto; display:block; }
+
+/* ---------- Слайд 13 (пример) · чек-лист пересечений ---------- */
+.score-badge{
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:var(--font-mono); font-weight:700; font-size:12px;
+  letter-spacing:.06em; text-transform:uppercase;
+  padding:6px 13px; border-radius:100px;
+}
+.score-badge.core{ background:rgba(31,138,91,.2); color:#62C998; }
+.score-badge.trap{ background:rgba(232,162,28,.2); color:#F0BC55; }
+.idea-line{
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(16px,1.5vw,21px); line-height:1.2; letter-spacing:-.01em;
+  margin-top:12px; color:var(--on-ink);
+}
+.cl{ display:flex; flex-direction:column; gap:0; margin-top:16px; }
+.cl li{
+  list-style:none; display:grid; grid-template-columns:auto 1fr auto;
+  gap:12px; align-items:start; padding:10px 0;
+  border-top:1px solid var(--ink-line);
+}
+.cl li:first-child{ border-top:0; }
+.cl .cdot{ width:11px; height:11px; border-radius:50%; margin-top:5px; flex:none; }
+.cl .cltx{ font-size:clamp(12.5px,1vw,14.5px); line-height:1.35; color:var(--on-ink-soft); }
+.cl .cltx b{ font-weight:800; color:var(--on-ink); }
+.cl .cmark{ font-weight:800; font-size:15px; flex:none; line-height:1.3; }
+.cl .cmark.yes{ color:#62C998; }
+.cl .cmark.no{ color:#F06A52; }
+.cl .cmark.maybe{ color:#F0BC55; }
+.case-verdict-mini{
+  margin-top:14px; padding-top:14px; border-top:1.5px solid var(--ink-line);
+  font-family:var(--font-body); font-weight:600; font-size:clamp(13px,1.05vw,16px);
+  line-height:1.4; color:var(--on-ink);
+}
+
+/* ===== Слайд 15 · Интерактивная Карта Точки А ===== */
+.venn-export{ background:var(--paper); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:34px 34px; border-radius:18px; padding:clamp(18px,2.4vw,34px) clamp(10px,2vw,30px) clamp(24px,2.4vw,36px); border:1.5px solid var(--paper-line); }
+.venn-export__title{ text-align:center; margin-bottom:6px; }
+.venn-export__title .t1{ font-family:var(--font-display); font-weight:900; font-size:clamp(22px,2.4vw,32px); letter-spacing:-.02em; }
+.venn-export__title .t2{ font-family:var(--font-mono); font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--on-paper-soft); margin-top:4px; }
+.venn{ position:relative; width:100%; max-width:860px; margin:0 auto; aspect-ratio:860/840; }
+.venn svg{ position:absolute; inset:0; width:100%; height:100%; }
+.label{ position:absolute; transform:translate(-50%,-50%); width:clamp(120px,16vw,170px); text-align:center; pointer-events:none; }
+.label .lnum{ font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:.1em; text-transform:uppercase; display:inline-flex; align-items:center; gap:5px; }
+.label .lname{ font-family:var(--font-display); font-weight:800; font-size:clamp(13px,1.35vw,17px); line-height:1.1; margin-top:3px; color:var(--on-paper); }
+.l1 .lnum{ color:var(--c1); } .l2 .lnum{ color:var(--c2); } .l3 .lnum{ color:var(--c3); } .l4 .lnum{ color:var(--c4); } .l5 .lnum{ color:var(--c5); }
+.ctext{ position:absolute; transform:translate(-50%,-50%); width:clamp(140px,19vw,205px); max-height:clamp(120px,18vh,180px); overflow:hidden; text-align:center; font-family:var(--font-display); font-weight:700; line-height:1.22; color:var(--ink); background:rgba(250,245,232,.86); border-radius:12px; padding:10px 12px; pointer-events:none; min-height:38px; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 8px rgba(0,0,0,.07); font-size:14px; }
+.ctext.empty{ font-weight:500; color:var(--on-paper-faint); background:rgba(250,245,232,.55); font-size:13px; }
+.center-a{ position:absolute; left:50%; top:48.8%; transform:translate(-50%,-50%); width:clamp(104px,13vw,140px); height:clamp(104px,13vw,140px); border-radius:50%; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; pointer-events:none; box-shadow:0 4px 18px rgba(0,0,0,.25); z-index:5; }
+.center-a .emoji{ font-size:clamp(22px,2.4vw,30px); line-height:1; }
+.center-a .ta1{ font-family:var(--font-display); font-weight:900; font-size:clamp(14px,1.5vw,19px); color:#FCEEE7; letter-spacing:-.02em; margin-top:2px; }
+.center-a .ta2{ font-family:var(--font-display); font-weight:900; font-size:clamp(14px,1.5vw,19px); color:var(--c5); letter-spacing:-.02em; }
+.recap{ margin-top:clamp(20px,2.6vw,32px); padding-top:clamp(18px,2.2vw,26px); border-top:1.5px solid var(--paper-line); display:grid; grid-template-columns:1fr 1fr; gap:clamp(10px,1.4vw,16px) clamp(16px,2.2vw,30px); }
+@media(max-width:640px){ .recap{ grid-template-columns:1fr; } }
+.recap__item{ border-left:3px solid var(--rc,var(--paper-line)); padding:4px 0 4px 14px; }
+.recap__item.r5{ grid-column:1 / -1; }
+@media(max-width:640px){ .recap__item.r5{ grid-column:auto; } }
+.recap__name{ font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--rc); margin-bottom:3px; }
+.recap__val{ font-family:var(--font-display); font-weight:600; font-size:clamp(13px,1vw,15px); line-height:1.4; color:var(--on-paper); word-break:break-word; }
+.recap__val.empty{ font-weight:500; color:var(--on-paper-faint); font-style:italic; }
+.inputs{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,1.6vw,20px); margin-top:clamp(28px,4vh,48px); }
+@media(max-width:680px){ .inputs{ grid-template-columns:1fr; } }
+.field{ background:var(--paper-2); border:1.5px solid var(--paper-line); border-left:4px solid var(--fc,var(--paper-line)); border-radius:0 10px 10px 0; padding:14px 16px; }
+.field.f5{ grid-column:1 / -1; }
+@media(max-width:680px){ .field.f5{ grid-column:auto; } }
+.field__head{ display:flex; align-items:baseline; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+.field__num{ font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--fc); }
+.field__name{ font-family:var(--font-display); font-weight:800; font-size:15px; }
+.field textarea{ width:100%; resize:vertical; min-height:88px; font-family:var(--font-display); font-weight:500; font-size:14.5px; line-height:1.45; color:var(--on-paper); background:#FBF8F0; border:1.5px solid var(--paper-line); border-radius:8px; padding:10px 12px; transition:border-color .15s; }
+.field textarea:focus{ outline:none; border-color:var(--fc); }
+.field textarea::placeholder{ color:var(--on-paper-faint); }
+.field__count{ font-family:var(--font-mono); font-size:10px; color:var(--on-paper-faint); text-align:right; margin-top:4px; }
+.field__count.over{ color:var(--c2); font-weight:700; }
+.vactions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:clamp(24px,3.4vh,38px); justify-content:center; }
+.vbtn{ font-family:var(--font-mono); font-weight:700; font-size:13px; letter-spacing:.04em; padding:14px 22px; border-radius:100px; border:0; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:transform .15s,box-shadow .15s,background .15s; }
+.vbtn:hover{ transform:translateY(-2px); }
+.vbtn--primary{ background:var(--c5); color:#fff; box-shadow:0 4px 16px rgba(226,84,43,.35); }
+.vbtn--dark{ background:var(--ink); color:#FCEEE7; }
+.vbtn--ghost{ background:transparent; color:var(--on-paper-soft); border:1.5px solid var(--paper-line); }
+.vbtn:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
+.vhowto{ margin-top:clamp(28px,4vh,44px); background:rgba(226,84,43,.05); border:1.5px solid rgba(226,84,43,.22); border-radius:14px; padding:clamp(20px,2.6vw,32px); }
+.vhowto__tag{ font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--c5); margin-bottom:14px; }
+.vhowto ol{ list-style:none; display:flex; flex-direction:column; gap:14px; }
+.vhowto li{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+.vhowto .step-n{ font-family:var(--font-display); font-weight:900; font-size:clamp(18px,2vw,26px); color:var(--c5); line-height:1; min-width:1.4em; }
+.vhowto .step-t{ font-size:14.5px; line-height:1.5; color:var(--on-paper); padding-top:2px; }
+.vhowto .step-t strong{ font-weight:800; }
+.vtoast{ position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(12px); background:var(--ink); color:#fff; font-family:var(--font-mono); font-size:13px; font-weight:600; padding:14px 22px; border-radius:100px; opacity:0; transition:opacity .25s,transform .25s; pointer-events:none; z-index:200; box-shadow:0 8px 30px rgba(0,0,0,.25); }
+.vtoast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+.vtoast.ok{ border-left:3px solid var(--c1); }
+.vtoast.err{ border-left:3px solid var(--c2); }
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body data-bg="paper" class="">
+
+<div class="progress" id="progress"></div>
+
+<!-- карусельная обвязка -->
+<div class="bookmark" id="bookmark"><span class="flag"></span><span class="pg" id="cLabel">1</span><span class="pgtot" id="cTot">/ 23</span></div>
+<div class="act-tag" id="actTag">Часть 0</div>
+<a class="prev-arrow" id="prevArrow" href="#" aria-label="Назад">←</a>
+<a class="next-arrow" id="nextArrow" href="#" aria-label="Дальше">→</a>
+
+<main class="deck" id="deck">
+
+  <!-- ================= ЧАСТЬ 0 · СВЯЗКА С ДНЁМ 1 ================= -->
+
+  <!-- SLIDE 1 — Recap «Вчера про рынок. Сегодня про тебя» -->
+  <section class="slide s-deep" data-num="1" data-act="Часть 0" data-screen-label="1 Recap">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">1</span> · Recap</div>
+      <h1 class="h-display" data-rise="2">Это <span class="accent">День 2.</span></h1>
+      <p class="lead mt-m maxw-m" data-rise="3"><em class="ser">Вчера разобрались с рынком. Сегодня — с тобой.</em></p>
+      <div class="formula mt-l" data-rise="4"><span class="accent">Экспертиза</span> <span class="op">×</span> <span class="soft">AI</span> <span class="op">×</span> <span class="soft" style="white-space:nowrap;">Бизнес-модель</span> <span class="op">=</span> ты пригоден к рынку</div>
+      <div class="plashka mt-l" data-rise="5">Сегодня работаем над первым звеном формулы — твоей <strong>экспертизой</strong>. И главное — чтобы ты увидел её честно.</div>
+    </div>
+    <div class="scroll-hint"><span>листай</span><span class="ar"></span></div>
+  </section>
+
+  <!-- SLIDE 2 — Карта Дня 2 + Что унесёшь -->
+  <section class="slide s-paper" data-num="2" data-act="Часть 0" data-screen-label="2 Что внутри">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">2</span> · Карта дня</div>
+      <h2 class="h1" data-rise="2">Что нас ждёт и что ты унесёшь</h2>
+
+      <div class="eyebrow mt-l" data-rise="3">Что внутри</div>
+      <div class="grid g2 mt-s">
+        <div class="card" data-rise="3"><div class="idx">❓ Один вопрос</div><p class="body">На котором AI-first конкуренты строят бизнесы. Сегодня применишь его к себе.</p></div>
+        <div class="card" data-rise="3"><div class="idx">🗺 Карта Точки А</div><p class="body">5 кругов. Главный инструмент дня. Синтез икигая + Zone of Genius + AI-фактора.</p></div>
+        <div class="card" data-rise="4"><div class="idx">🤖 AI-промпт диагностики</div><p class="body">Готовый промпт. Копируешь в Claude / ChatGPT — проходишь диалог-интервью.</p></div>
+        <div class="card" data-rise="4"><div class="idx">🎤 Бонус: Совет 6 экспертов</div><p class="body">Отдельный мини-урок после Дня 3.</p></div>
+      </div>
+
+      <div class="eyebrow mt-l" data-rise="5">Что унесёшь</div>
+      <ul class="stack mt-s" style="gap:12px;list-style:none;" data-rise="5">
+        <li class="body">✅ <strong>Заполненную Карту Точки А</strong> <em class="ser">(хотя бы 2–3 круга — возьмёшь по ходу урока)</em></li>
+        <li class="body">✅ AI-промпт для самопроверки в любое время</li>
+        <li class="body">✅ Способ увидеть <strong>Точку Б</strong> — куда конкретно тебе имеет смысл</li>
+        <li class="body">✅ Доступ к бонус-уроку с Council методом</li>
+      </ul>
+      <p class="foot mt-m" data-rise="5">Сработает, даже если ты «слишком разный», «без уникальности» или «уже всё пробовал».</p>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 1 · ЗАХВАТ ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 1" data-screen-label="Акт 1 · Захват">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 1</div>
+      <div class="act-title" data-rise="2">Вопрос?</div>
+      <p class="act-sub" data-rise="3">Один вопрос, который меняет угол зрения на всё.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — Хук · Вопрос-акселератор Fladlien -->
+  <section class="slide s-dark" data-num="3" data-act="Акт 1" data-screen-label="3 Хук Fladlien">
+    <div class="slide__inner stack" style="align-items:center;text-align:center;">
+      <div class="kicker" data-rise>Один вопрос</div>
+      <h2 class="h-display maxw-m" data-rise="2">«Если бы тебе пришлось создать бизнес, который <span class="accent">убьёт твой текущий</span> — каким бы он был?»</h2>
+      <p class="lead mt-l" data-rise="3"><em class="ser">— Jason Fladlien, бестселлер «One to Many», запуски на $57 млн</em></p>
+      <div class="plashka mt-l maxw-m" data-rise="4"><strong>Запиши свой ответ прямо сейчас.</strong> Через 20 минут ты увидишь его по-новому.</div>
+      <div class="source"><span class="tag">[1]</span> Jason Fladlien · «AI Will Kill These Businesses»</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — Почему вопрос мощный -->
+  <section class="slide s-deep" data-num="4" data-act="Акт 1" data-screen-label="4 3 причины">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">4</span> · Почему вопрос работает</div>
+      <h2 class="h1 maxw-m" data-rise="2">Самый мощный инструмент диагностики</h2>
+      <div class="numlist mt-l">
+        <div class="numitem" data-rise="3"><div class="n">1</div><div><h3 class="h3">Заставляет смотреть на себя глазами врага</h3><p class="body soft mt-s">Не из позиции «у меня всё нормально», а «что во мне можно уничтожить».</p></div></div>
+        <div class="numitem" data-rise="4"><div class="n">2</div><div><h3 class="h3">Показывает твою зону уязвимости</h3><p class="body soft mt-s">То, что AI заберёт у тебя в первую очередь — это и есть то, что ты делаешь не думая.</p></div></div>
+        <div class="numitem" data-rise="5"><div class="n">3</div><div><h3 class="h3">Подсказывает, как именно AI убьёт твой бизнес</h3><p class="body soft mt-s">Если ты сам не сделаешь это первым — это сделает кто-то другой.</p></div></div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">Сегодняшний инструмент — <strong>Карта Точки А</strong> — это и есть ответ на этот вопрос.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 — 3 типичных провала -->
+  <section class="slide s-paper" data-num="5" data-act="Акт 1" data-screen-label="5 3 провала">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">5</span> · Цена ошибки</div>
+      <h2 class="h1" data-rise="2">3 провала, которых можно избежать</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Типичные истории людей, пропустивших шаг диагностики.</em></p>
+      <div class="grid g3 mt-l">
+        <article class="card case-card" data-rise="3">
+          <header class="case-head">
+            <span class="case-num">1️⃣</span>
+            <div class="case-name">ОЛЕСЯ</div>
+            <div class="case-meta">SMM-специалист · 5 лет</div>
+          </header>
+          <div class="case-block">
+            <div class="case-label was">🔻 Было</div>
+            <p>Клиенты стали уходить — «мы сами теперь делаем контент через ChatGPT, ты не нужна». Доход просел с <strong style="white-space:nowrap;">€2 500/мес до €1 200/мес</strong> за полгода.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label did">🔧 Начала делать</div>
+            <p>Записалась на курс по промпт-инжинирингу. Освоила Claude, Midjourney, простую автоматизацию. Стала писать промпты на фрилансе за <strong style="white-space:nowrap;">€15–30</strong> за штуку — и вроде делать работу быстрее.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label fail">❌ Не сработало</div>
+            <p>Экспертиза есть. AI освоила. <strong>Но бизнес-модели нет.</strong> «Промпт-инженер» = массовый рынок, где конкуренция только по цене.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label fix">💡 Что надо было</div>
+            <p>3 года в SMM <strong>именно для салонов красоты</strong> — это её узкая ниша. Реальная модель — «AI-сотрудник для салонов» под подписку <strong style="white-space:nowrap;">€500–800/мес</strong>. 5 салонов = <strong style="white-space:nowrap;">€3K/мес</strong> стабильно.</p>
+          </div>
+          <footer class="case-verdict">
+            <div class="case-verdict__label">Чего не хватило</div>
+            <div class="case-verdict__missing">❌ Бизнес-модель</div>
+            <div class="case-verdict__has">экспертиза ✅ · AI ✅</div>
+          </footer>
+        </article>
+
+        <article class="card case-card" data-rise="4">
+          <header class="case-head">
+            <span class="case-num">2️⃣</span>
+            <div class="case-name">МИХАИЛ</div>
+            <div class="case-meta">финансовый консультант · 6 лет</div>
+          </header>
+          <div class="case-block">
+            <div class="case-label was">🔻 Было</div>
+            <p>Поток клиентов на личные консультации сократился — люди стали сами разбираться через ChatGPT. Чек упал с <strong style="white-space:nowrap;">€300 до €100</strong> за встречу.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label did">🔧 Начал делать</div>
+            <p>Решил создать платное Telegram-сообщество «Инвестиции с AI». Освоил AI-инструменты для аналитики рынка, начал ежедневно публиковать разборы.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label fail">❌ Не сработало</div>
+            <p>Экспертиза есть. Модель «платное сообщество» крутая. <strong>Но AI применил не там.</strong> Использовал AI для написания постов — люди поняли что это ИИ, ценность упала. <strong style="white-space:nowrap;">80 подписчиков × €10 = €800/мес</strong>. Не отбило усилий.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label fix">💡 Что надо было</div>
+            <p>6 лет опыта = премиальный актив. AI надо было применить <strong>для рутины</strong> (персональные отчёты клиентам), а не для массового контента. Реальная модель — ретейнер (удержание) <strong style="white-space:nowrap;">€1 500/мес × 5 клиентов = €7 500/мес</strong>.</p>
+          </div>
+          <footer class="case-verdict">
+            <div class="case-verdict__label">Чего не хватило</div>
+            <div class="case-verdict__missing">❌ AI в правильном месте</div>
+            <div class="case-verdict__has">экспертиза ✅ · бизнес-модель ✅</div>
+          </footer>
+        </article>
+
+        <article class="card case-card" data-rise="4">
+          <header class="case-head">
+            <span class="case-num">3️⃣</span>
+            <div class="case-name">КРИСТИНА</div>
+            <div class="case-meta">эксперт по релокации в Польшу · 2 года</div>
+          </header>
+          <div class="case-block">
+            <div class="case-label was">🔻 Было</div>
+            <p>Люди стали искать инфу в ChatGPT. Поток людей на услугу <strong style="white-space:nowrap;">по €500</strong> упал в 2 раза.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label did">🔧 Начала делать</div>
+            <p>Решила сделать видео-курс «легализация в Польше» за <strong style="white-space:nowrap;">€290</strong>. 4 месяца записывала уроки. Использовала AI для генерации сценариев, презентаций, сайта, креативов.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label fail">❌ Не сработало</div>
+            <p>Экспертиза есть. AI применила. <strong>Бизнес-модель оказалась не та.</strong> Курс устаревает за месяцы (законы меняются), много возвратов из-за устаревшей информации. Всё равно сложно конкурировать с бесплатным ресёрчем в ИИ.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-label fix">💡 Что надо было</div>
+            <p>AI применить <strong>в работе с клиентами</strong> — подготовка персональных пакетов документов в 5 раз быстрее. Плюс контент-завод. Реальная модель — «Релокация под ключ» за <strong style="white-space:nowrap;">€1 800</strong>, AI берёт рутину, она работает 1-на-1. <strong style="white-space:nowrap;">5 клиентов/мес = €9K</strong>.</p>
+          </div>
+          <footer class="case-verdict">
+            <div class="case-verdict__label">Чего не хватило</div>
+            <div class="case-verdict__missing">❌ Правильной бизнес-модели</div>
+            <div class="case-verdict__has">экспертиза ✅ · AI ✅</div>
+          </footer>
+        </article>
+      </div>
+      <div class="plashka mt-l" data-rise="5"><strong>У всех трёх — одна и та же ошибка.</strong> Они пропустили диагностику и натянули на себя неправильную модель. Сегодня собираем твою.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6 — Тизер механизма · 5 кругов из 3 рамок -->
+  <section class="slide s-deep" data-num="6" data-act="Акт 1" data-screen-label="6 Тизер 5 кругов">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">6</span> · Тизер механизма</div>
+      <h2 class="h1 maxw-m" data-rise="2">Собрал лучшее из 3 мировых рамок в одну</h2>
+      <div class="grid g3 mt-l">
+        <div class="card" data-rise="3"><div class="idx">🇯🇵 Икигай</div><p class="body"><em class="ser">Японская концепция.</em> 4 круга: что любишь · в чём хорош · за что платят · что нужно миру.</p></div>
+        <div class="card" data-rise="3"><div class="idx">🎯 Zone of Genius</div><p class="body"><em class="ser">Gay Hendricks, «The Big Leap».</em> Различает: «делаю отлично» vs «расцветаю» — критическое отличие.</p></div>
+        <div class="card" data-rise="4"><div class="idx">🦔 Hedgehog Concept</div><p class="body"><em class="ser">Jim Collins, «Good to Great».</em> 3 круга: страсть · экспертиза · экономическая отдача.</p></div>
+      </div>
+      <div class="stack mt-l" style="align-items:center;" data-rise="5">
+        <div style="font-family:var(--font-mono);color:var(--accent);font-size:32px;line-height:1;">↓</div>
+        <h2 class="h-display accent mt-s" style="text-align:center;">Карта Точки «А» · 5 кругов</h2>
+        <p class="lead mt-s" style="text-align:center;max-width:680px;"><em class="ser">Всё вышеперечисленное + 5-й круг «Что AI не может вместо тебя».</em></p>
+      </div>
+      <p class="foot mt-l" data-rise="5">Через 7 минут ты увидишь все 5 кругов своей Карты.</p>
+      <div class="source"><span class="tag">[2][3]</span> Hendricks «The Big Leap» · Collins «Good to Great» · Икигай (Mieko Kamiya 1966)</div>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 2 · ЯДРО · КАРТА ТОЧКИ А ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 2" data-screen-label="Акт 2 · Карта Точки А">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 2</div>
+      <div class="act-title" data-rise="2">Карта<br>Точки А</div>
+      <p class="act-sub" data-rise="3">Ядро урока. 5 кругов, которые соберут твою картину.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 7 — Big Domino + Враг -->
+  <section class="slide s-deep" data-num="7" data-act="Акт 2" data-screen-label="7 Big Domino">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">7</span> · Главное правило</div>
+      <h2 class="h2 soft" data-rise="2">Сначала — что НЕ работает:</h2>
+      <ul class="stack mt-s" style="gap:10px;list-style:none;opacity:.75;" data-rise="3">
+        <li class="body soft">❌ «Какой AI-курс пройти?»</li>
+        <li class="body soft">❌ «Какая модель заработка лучшая?»</li>
+        <li class="body soft">❌ «Куда сейчас все идут?»</li>
+      </ul>
+      <p class="foot mt-s maxw-m" data-rise="3"><em class="ser">Эти вопросы заставляют натягивать на себя чужую модель → не идёт → бросаешь.</em></p>
+
+      <h2 class="h1 mt-l" data-rise="4">Универсальной модели заработка с AI <span class="accent">не существует.</span></h2>
+      <h2 class="h1 mt-s" data-rise="4">У каждого <span class="accent">своя</span>.</h2>
+      <p class="lead mt-m maxw-m" data-rise="5">И она определяется не «выбором модели» — а пониманием своей <strong>Точки А</strong>.</p>
+
+      <div class="plashka green mt-l" data-rise="5">Это не твоя вина, что ты искал не там. Тестов «найди свой талант» в школах не было. AI-эпохе всего 3 года. Никто ещё не успел нормально научить.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8 — Карта Точки А · 5 кругов (главный визуал) -->
+  <section class="slide s-dark" data-num="8" data-act="Акт 2" data-screen-label="8 5 кругов">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">8</span> · Главный артефакт дня</div>
+      <h2 class="h1" data-rise="2">Карта Точки А · 5 кругов</h2>
+
+      <div class="grid g3 mt-l" style="gap:18px;">
+        <div class="card" data-rise="3" style="border-color:var(--green);"><div class="idx green-t">🟢 Круг 1</div><h3 class="h3">В чём ты уникален</h3><p class="body soft mt-s"><em class="ser">Zone of Genius</em></p></div>
+        <div class="card" data-rise="3" style="border-color:var(--coral);"><div class="idx accent">🔴 Круг 2</div><h3 class="h3">Что ты ненавидишь делать</h3><p class="body soft mt-s"><em class="ser">AI-кандидат на передачу</em></p></div>
+        <div class="card" data-rise="3" style="border-color:var(--amber);"><div class="idx" style="color:var(--amber);">🟡 Круг 3</div><h3 class="h3">Где у тебя рычаг</h3><p class="body soft mt-s"><em class="ser">Актив, опыт, аудитория, окружение, навыки, время</em></p></div>
+        <div class="card" data-rise="4" style="border-color:#4A90C2;"><div class="idx" style="color:#7AB8DC;">🔵 Круг 4</div><h3 class="h3">Где платит рынок в 2026</h3><p class="body soft mt-s"><em class="ser">Деньги в AI-эпохе</em></p></div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);"><div class="idx accent">⚡ Круг 5</div><h3 class="h3">Что AI не может вместо тебя</h3><p class="body soft mt-s"><em class="ser">Твой защитный ров</em></p></div>
+        <div class="card" data-rise="4" style="background:var(--accent);border-color:var(--accent);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+          <div style="font-size:42px;line-height:1;margin-bottom:12px;">🎯</div>
+          <h3 class="h3" style="color:#fff;">Твоя Точка А</h3>
+          <p class="small mt-s" style="color:#FBE6DC;">Пересечение всех 5 → вектор в Точку Б</p>
+        </div>
+      </div>
+      <p class="foot mt-l" data-rise="5">Каждый круг — на следующих 3 слайдах. С вопросами, которые ты можешь применить к себе прямо сейчас.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 9 — Круги 1 и 2 -->
+  <section class="slide s-paper" data-num="9" data-act="Акт 2" data-screen-label="9 Круги 1 и 2">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">9</span> · Про тебя</div>
+      <h2 class="h1" data-rise="2">Круги 1 и 2 — про тебя</h2>
+      <div class="split mt-l">
+        <div class="card" data-rise="3" style="border-color:var(--green);">
+          <div class="col-head green-t">🟢 Круг 1 — В чём ты уникален</div>
+          <p class="body soft"><em class="ser">Это не «отлично делаю». Это «расцветаю» (Hendricks).</em></p>
+          <p class="eyebrow mt-m">3 вопроса</p>
+          <ul class="stack" style="gap:10px;list-style:none;">
+            <li class="body">— За что меня хвалили в работе, которую я делал на автомате?</li>
+            <li class="body">— Что мне даётся легче, чем большинству людей?</li>
+            <li class="body">— К кому ко мне идут за советом по умолчанию?</li>
+          </ul>
+          <p class="foot mt-m">⚡ Признак: <strong>ты теряешь счёт времени</strong>, когда этим занимаешься.</p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--coral);">
+          <div class="col-head accent">🔴 Круг 2 — Что ты ненавидишь</div>
+          <p class="body soft"><em class="ser">Это первый кандидат на передачу AI.</em></p>
+          <p class="eyebrow mt-m">3 вопроса</p>
+          <ul class="stack" style="gap:10px;list-style:none;">
+            <li class="body">— Что выматывает за 2 часа?</li>
+            <li class="body">— Что я прокрастинирую больше всего?</li>
+            <li class="body">— Что я хочу отдать кому-то, но не было денег на найм?</li>
+          </ul>
+          <p class="foot mt-m">⚡ Признак: <strong>делаешь, потому что «надо»</strong>, а не «хочу».</p>
+        </div>
+      </div>
+      <h2 class="h2 accent mt-l" data-rise="5">Уникальность × Ненависть = твоя AI-стратегия.</h2>
+      <p class="foot mt-s" data-rise="5">Усиливаешь Круг 1. Отдаёшь AI Круг 2. Это и есть AI-плечо.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 10 — Круги 3 и 4 -->
+  <section class="slide s-deep" data-num="10" data-act="Акт 2" data-screen-label="10 Круги 3 и 4">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">10</span> · Про твой контекст</div>
+      <h2 class="h1" data-rise="2">Круги 3 и 4 — про твой контекст</h2>
+      <div class="split mt-l">
+        <div class="card" data-rise="3" style="border-color:var(--amber);">
+          <div class="col-head" style="color:var(--amber);">🟡 Круг 3 — Где у тебя рычаг</div>
+          <p class="body soft"><em class="ser">То, что у тебя уже есть и что нельзя купить за месяц.</em></p>
+          <p class="eyebrow mt-m">Возможные активы</p>
+          <ul class="stack" style="gap:10px;list-style:none;">
+            <li class="body">— <strong>Аудитория</strong> <em class="ser">(даже 100 человек — это актив)</em></li>
+            <li class="body">— <strong>Опыт в нише</strong> <em class="ser">(10+ лет — нельзя купить)</em></li>
+            <li class="body">— Связи и репутация в индустрии</li>
+            <li class="body">— Уникальный backstory</li>
+            <li class="body">— Доступ к данным, процессам, инсайтам</li>
+          </ul>
+          <p class="foot mt-m">⚡ Признак: <strong>тебе</strong> легко добыть, а другому — почти невозможно.</p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:#4A90C2;">
+          <div class="col-head" style="color:#7AB8DC;">🔵 Круг 4 — Где платит рынок 2026</div>
+          <p class="body soft"><em class="ser">Не «где деньги вообще», а «под мою сферу».</em></p>
+          <p class="eyebrow mt-m">Растущие зоны 2026</p>
+          <ul class="stack" style="gap:10px;list-style:none;">
+            <li class="body">— AI-консалтинг для малого/среднего бизнеса</li>
+            <li class="body">— Контент-активы со своими продуктами</li>
+            <li class="body">— Когортные программы (3–5K чек)</li>
+            <li class="body">— Fractional / part-time экспертные роли</li>
+            <li class="body">— Продуктизованные пакеты услуг</li>
+          </ul>
+          <p class="foot mt-m">⚡ Признак: рынок платит <strong>больше</strong>, чем год назад.</p>
+        </div>
+      </div>
+      <div class="plashka mt-l" data-rise="5"><strong>Рычаг × Рынок</strong> = твой максимально короткий путь от Точки А к Точке Б.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 11 — Круг 5 · Защитный ров -->
+  <section class="slide s-dark" data-num="11" data-act="Акт 2" data-screen-label="11 Круг 5 ров">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">11</span> · Самый важный круг</div>
+      <h2 class="h1" data-rise="2">Круг 5 — твой <span class="accent">защитный ров</span></h2>
+      <p class="lead mt-m maxw-m" data-rise="3"><em class="ser">Этого круга нет в классическом икигае. И это самый важный круг в AI-эпоху.</em></p>
+
+      <h2 class="h-display accent mt-l" data-rise="4" style="font-size:clamp(28px,5.4vw,82px);">⚡ «Что AI не может вместо тебя?»</h2>
+
+      <div class="grid g2 mt-l" style="gap:14px 56px;" data-rise="5">
+        <p class="body"><strong>1.</strong> Решения с неполной информацией <em class="ser">(контекст, нюансы, политика)</em></p>
+        <p class="body"><strong>2.</strong> Доверие и репутация в твоей нише <em class="ser">(годы выстраивались — за день не повторить)</em></p>
+        <p class="body"><strong>3.</strong> Эмпатия в моменте <em class="ser">(увидеть, что человек не сказал)</em></p>
+        <p class="body"><strong>4.</strong> Понимание клиента «между строк» <em class="ser">(твоя насмотренность на 100+ кейсах)</em></p>
+        <p class="body"><strong>5.</strong> Креативные комбинации <em class="ser">(которых не было в данных AI)</em></p>
+        <p class="body"><strong>6.</strong> Брать на себя ответственность <em class="ser">(AI не подпишет договор)</em></p>
+        <p class="body" style="grid-column:1 / -1;"><strong>7.</strong> Твой собственный вкус и эстетика <em class="ser">(твоя точка зрения)</em></p>
+      </div>
+
+      <div class="plashka green mt-l" data-rise="5"><strong>Это и есть твой РОВ.</strong> То, что в новой реальности будет стоить <strong>дороже</strong>, а не дешевле.</div>
+      <p class="foot mt-m" data-rise="5"><em class="ser">Помнишь Слайд 17 Дня 1? «AI забирает мозг, не руки». Круг 5 — это то, что AI не возьмёт даже как «мозг». Это твоё.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 12 — Как читать пересечения -->
+  <section class="slide s-deep" data-num="12" data-act="Акт 2" data-screen-label="12 Как читать">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">12</span> · Механизм работы</div>
+      <h2 class="h1" data-rise="2">Как читать свою Карту</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Чем больше кругов пересекается — тем сильнее сигнал.</em></p>
+
+      <div class="grid g3 mt-l">
+        <div class="card" data-rise="3" style="border-color:var(--accent);">
+          <div class="mini-venn">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="100" cy="72"  r="50" fill="#1F8A5B" fill-opacity="0.5"/>
+              <circle cx="125" cy="90"  r="50" fill="#D32F2F" fill-opacity="0.5"/>
+              <circle cx="115" cy="122" r="50" fill="#E8A21C" fill-opacity="0.55"/>
+              <circle cx="85"  cy="122" r="50" fill="#4A90C2" fill-opacity="0.5"/>
+              <circle cx="75"  cy="90"  r="50" fill="#E2542B" fill-opacity="0.5"/>
+              <circle cx="100" cy="101" r="19" fill="#E2542B"/>
+              <text x="100" y="107" text-anchor="middle" font-size="17">🎯</text>
+            </svg>
+          </div>
+          <div class="idx accent">🎯 Ядро</div>
+          <h3 class="h3">все 5 кругов</h3>
+          <p class="body soft mt-s">Твоя главная Точка А — и направление в Точку Б.</p>
+          <p class="foot mt-m"><em class="ser">Здесь живут твои лучшие модели заработка.</em></p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--green);">
+          <div class="mini-venn">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="78"  cy="78"  r="45" fill="#1F8A5B" fill-opacity="0.5"/>
+              <circle cx="104" cy="92"  r="45" fill="#D32F2F" fill-opacity="0.5"/>
+              <circle cx="82"  cy="116" r="45" fill="#E8A21C" fill-opacity="0.5"/>
+              <circle cx="160" cy="150" r="38" fill="#4A90C2" fill-opacity="0.4"/>
+              <circle cx="162" cy="54"  r="38" fill="#E2542B" fill-opacity="0.4"/>
+              <circle cx="88"  cy="95"  r="14" fill="#1F8A5B"/>
+              <text x="88" y="100" text-anchor="middle" font-size="13">🌱</text>
+            </svg>
+          </div>
+          <div class="idx green-t">🌱 Потенциал</div>
+          <h3 class="h3">3–4 круга</h3>
+          <p class="body soft mt-s">Твои возможные ходы. Стоит протестировать, но не делать ставкой жизни.</p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--amber);">
+          <div class="mini-venn">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="60"  cy="58"  r="36" fill="#1F8A5B" fill-opacity="0.42"/>
+              <circle cx="144" cy="62"  r="36" fill="#D32F2F" fill-opacity="0.42"/>
+              <circle cx="152" cy="144" r="36" fill="#E8A21C" fill-opacity="0.42"/>
+              <circle cx="56"  cy="142" r="36" fill="#4A90C2" fill-opacity="0.42"/>
+              <circle cx="98"  cy="150" r="36" fill="#E2542B" fill-opacity="0.42"/>
+              <text x="100" y="106" text-anchor="middle" font-size="20">⚠️</text>
+            </svg>
+          </div>
+          <div class="idx" style="color:var(--amber);">⚠️ Ловушки</div>
+          <h3 class="h3">только 1–2 круга</h3>
+          <p class="body soft mt-s">Соблазняют блестящим обещанием — но не пройдут долгий тест.</p>
+          <p class="foot mt-m"><em class="ser">Например: «вкатиться в кодинг», «стать AI-блогером».</em></p>
+        </div>
+      </div>
+
+      <h2 class="h2 mt-l" data-rise="5"><span class="accent">Точка А</span> (где ты сейчас) → <span class="accent">Точка Б</span> (куда ведёт ядро)</h2>
+      <p class="foot mt-s" data-rise="5"><em class="ser">Не наоборот. Сначала видишь ядро — потом строишь маршрут.</em></p>
+      <div class="plashka mt-l" data-rise="5">Звучит абстрактно? На следующем слайде — живой пример: как одна идея проходит все 5 проверок, а другая проваливается.</div>
+    </div>
+  </section>
+
+
+  <!-- SLIDE 13 — Пример: идея через круги (ядро vs ловушка) -->
+  <section class="slide s-dark" data-num="13" data-act="Акт 2" data-screen-label="13 Пример пересечений">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">13</span> · Пример на пальцах</div>
+      <h2 class="h1" data-rise="2">Одна идея — <span class="accent">5 проверок</span></h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Берёшь идею и считаешь, в скольких кругах она лежит. Чем больше — тем сильнее. Возьмём Машу из примера.</em></p>
+
+      <div class="split mt-l">
+        <div class="card" data-rise="3" style="border-color:var(--green);">
+          <span class="score-badge core">🎯 5 из 5 → Ядро</span>
+          <div class="idea-line">Идея: «Brand-voice гайды для e-com брендов»</div>
+          <ul class="cl">
+            <li><span class="cdot" style="background:#1F8A5B;"></span><span class="cltx"><b>Уникальность</b> — пишет «как живой человек»</span><span class="cmark yes">✅</span></li>
+            <li><span class="cdot" style="background:#D32F2F;"></span><span class="cltx"><b>Ненавидит</b> — внутри нет SEO/форматирования (AI заберёт)</span><span class="cmark yes">✅</span></li>
+            <li><span class="cdot" style="background:#E8A21C;"></span><span class="cltx"><b>Рычаг</b> — 4 года в e-commerce + 800 подписчиков</span><span class="cmark yes">✅</span></li>
+            <li><span class="cdot" style="background:#4A90C2;"></span><span class="cltx"><b>Рынок платит</b> — бренды платят за brand voice в 2026</span><span class="cmark yes">✅</span></li>
+            <li><span class="cdot" style="background:#E2542B;"></span><span class="cltx"><b>AI не может</b> — не «слышит» голос бренда без неё</span><span class="cmark yes">✅</span></li>
+          </ul>
+          <div class="case-verdict-mini"><strong>Сюда и идти</strong> — это её Точка Б. Все 5 кругов сошлись.</div>
+        </div>
+
+        <div class="card" data-rise="4" style="border-color:var(--amber);">
+          <span class="score-badge trap">⚠️ 1 из 5 → Ловушка</span>
+          <div class="idea-line">Идея: «Стать AI-блогером, канал про нейронки»</div>
+          <ul class="cl">
+            <li><span class="cdot" style="background:#1F8A5B;"></span><span class="cltx"><b>Уникальность</b> — её сила в текстах для брендов, не в AI</span><span class="cmark no">✕</span></li>
+            <li><span class="cdot" style="background:#D32F2F;"></span><span class="cltx"><b>Ненавидит</b> — ежедневный контент быстро выматывает</span><span class="cmark no">✕</span></li>
+            <li><span class="cdot" style="background:#E8A21C;"></span><span class="cltx"><b>Рычаг</b> — её аудитория про e-commerce, а не про AI</span><span class="cmark no">✕</span></li>
+            <li><span class="cdot" style="background:#4A90C2;"></span><span class="cltx"><b>Рынок платит</b> — платит, но конкуренция адова</span><span class="cmark maybe">🤔</span></li>
+            <li><span class="cdot" style="background:#E2542B;"></span><span class="cltx"><b>AI не может</b> — контент про AI сгенерит кто угодно</span><span class="cmark no">✕</span></li>
+          </ul>
+          <div class="case-verdict-mini"><strong>Звучит модно</strong> — но ни один её актив тут не работает.</div>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>Та же Маша. Та же экспертиза.</strong> Разница только в одном — в скольких кругах лежит идея.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 14 — AI-промпт «Карта Точки А» -->
+  <section class="slide s-paper" data-num="14" data-act="Акт 2" data-screen-label="14 AI-промпт">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">14</span> · Главный артефакт</div>
+      <h2 class="h1" data-rise="2">AI-промпт «Карта Точки А»</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Копируй и применяй прямо сейчас.</em></p>
+
+      <pre data-rise="3" style="font-family:var(--font-mono);font-size:clamp(11px,1.05vw,15px);line-height:1.55;background:var(--paper-2);border:1.5px solid var(--paper-line);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:clamp(18px,2.5vh,32px) clamp(18px,2.4vw,32px);margin-top:clamp(22px,3.4vh,40px);white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;color:var(--on-paper);font-weight:500;max-width:100%;">ИНСТРУКЦИЯ: заполни два блока ниже своими данными (БЛОК 1 и БЛОК 2).
+Всё, что идёт после блоков — не трогай, это инструкции для AI.
+Когда заполнил — вставь весь текст в Claude, ChatGPT, Gemini или
+Perplexity. Получишь анализ своей Точки А и 2–3 ниши для запуска.
+
+═══════════ БЛОК 1: ОБО МНЕ ═══════════
+
+ТЕКУЩАЯ СИТУАЦИЯ:
+- Возраст:
+- Где живу (страна, город):
+- Профессия / текущая роль:
+- Опыт в профессии (лет):
+- Текущий месячный доход (примерно):
+- Сколько часов в неделю готов(а) работать:
+- Семейная ситуация (дети, обязательства):
+
+ЧТО СЕЙЧАС НЕ РАБОТАЕТ:
+[2–3 предложения: доход просел? клиенты уходят? выгорел?]
+
+МОИ АКТИВЫ:
+- Аудитория (блог/канал/рассылка, сколько подписчиков):
+- Клиентская база (сколько клиентов, в каких нишах):
+- Сеть контактов («свои люди» в индустрии):
+- Готовые наработки (курсы, шаблоны, методологии):
+- Опыт с AI (какими инструментами пользуюсь):
+
+ЦЕЛЬ НА 12 МЕСЯЦЕВ:
+[чего хочу достичь — в деньгах, формате жизни, росте]
+
+ЧТО ОТТАЛКИВАЕТ:
+[модели работы, которые точно не хочу]
+
+═══════════ БЛОК 2: МОЯ КАРТА ТОЧКИ А ═══════════
+
+Приложи картинку с заполненной картой ИЛИ заполни 5 кругов:
+
+КРУГ 1. В чём я уникален:
+КРУГ 2. Что я ненавижу делать:
+КРУГ 3. Где у меня рычаг:
+КРУГ 4. Где платит рынок 2026:
+КРУГ 5. Что AI не может вместо меня:
+
+─── дальше — инструкции для AI (роль, 7 моделей, формат
+    разбора). Они копируются вместе с промптом по кнопке ниже ───</pre>
+
+      <div class="row mt-l" data-rise="4">
+        <span class="chip">✅ Claude</span>
+        <span class="chip">✅ ChatGPT</span>
+        <span class="chip">✅ Gemini</span>
+        <span class="chip">Бесплатно</span>
+      </div>
+      <div class="row mt-l" data-rise="5" style="align-items:center;">
+        <button class="vbtn vbtn--primary" id="btnCopyFull">📋 Скопировать полный промпт</button>
+        <span class="foot" style="margin:0;"><em class="ser">Копируется весь текст вместе с инструкциями для AI — просто вставь в чат.</em></span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SLIDE 15 — Интерактив: заполни свою Карту Точки А -->
+  <section class="slide s-paper" data-num="15" data-act="Акт 2" data-screen-label="15 Заполни Карту">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">15</span> · Заполни прямо сейчас</div>
+      <h2 class="h1" data-rise="2">Собери свою Карту Точки А</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Впиши ответы в 5 полей — они появятся в кругах и в расшифровке. Потом скачай картинку и получи разбор от AI.</em></p>
+
+      <div class="venn-export mt-l" id="exportArea" data-rise="3">
+        <div class="venn-export__title">
+          <div class="t1">Моя Карта Точки А</div>
+          <div class="t2">5 кругов · икигай + Zone of Genius + AI-фактор</div>
+        </div>
+        <div class="venn" id="venn">
+          <svg viewBox="0 0 860 840" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g>
+              <ellipse cx="430" cy="305" rx="180" ry="255" fill="#1F8A5B" fill-opacity="0.40"/>
+              <ellipse cx="430" cy="305" rx="180" ry="255" fill="#D32F2F" fill-opacity="0.40" transform="rotate(72 430 415)"/>
+              <ellipse cx="430" cy="305" rx="180" ry="255" fill="#E8A21C" fill-opacity="0.44" transform="rotate(144 430 415)"/>
+              <ellipse cx="430" cy="305" rx="180" ry="255" fill="#4A90C2" fill-opacity="0.40" transform="rotate(216 430 415)"/>
+              <ellipse cx="430" cy="305" rx="180" ry="255" fill="#E2542B" fill-opacity="0.40" transform="rotate(288 430 415)"/>
+            </g>
+          </svg>
+          <div class="label l1" style="left:50%; top:6.5%;"><div class="lnum">🟢 КРУГ 1</div><div class="lname">В чём ты уникален</div></div>
+          <div class="label l2" style="left:91%; top:35%;"><div class="lnum">🔴 КРУГ 2</div><div class="lname">Что ненавидишь</div></div>
+          <div class="label l3" style="left:76%; top:82%;"><div class="lnum">🟡 КРУГ 3</div><div class="lname">Где у тебя рычаг</div></div>
+          <div class="label l4" style="left:24%; top:82%;"><div class="lnum">🔵 КРУГ 4</div><div class="lname">Где платит рынок 2026</div></div>
+          <div class="label l5" style="left:9%;  top:35%;"><div class="lnum">⚡ КРУГ 5</div><div class="lname">Что AI не может</div></div>
+          <div class="ctext empty" id="ct1" style="left:50%; top:26%;">…</div>
+          <div class="ctext empty" id="ct2" style="left:73%; top:41%;">…</div>
+          <div class="ctext empty" id="ct3" style="left:64%; top:67%;">…</div>
+          <div class="ctext empty" id="ct4" style="left:36%; top:67%;">…</div>
+          <div class="ctext empty" id="ct5" style="left:27%; top:41%;">…</div>
+          <div class="center-a"><div class="emoji">🎯</div><div class="ta1">ТВОЯ</div><div class="ta2">ТОЧКА А</div></div>
+        </div>
+        <div class="recap" id="recap">
+          <div class="recap__item r1" style="--rc:var(--c1);"><div class="recap__name">🟢 В чём ты уникален</div><div class="recap__val empty" id="rv1">— не заполнено</div></div>
+          <div class="recap__item r2" style="--rc:var(--c2);"><div class="recap__name">🔴 Что ненавидишь делать</div><div class="recap__val empty" id="rv2">— не заполнено</div></div>
+          <div class="recap__item r3" style="--rc:var(--c3);"><div class="recap__name">🟡 Где у тебя рычаг</div><div class="recap__val empty" id="rv3">— не заполнено</div></div>
+          <div class="recap__item r4" style="--rc:var(--c4);"><div class="recap__name">🔵 Где платит рынок в 2026</div><div class="recap__val empty" id="rv4">— не заполнено</div></div>
+          <div class="recap__item r5" style="--rc:var(--c5);"><div class="recap__name">⚡ Что AI не может вместо тебя</div><div class="recap__val empty" id="rv5">— не заполнено</div></div>
+        </div>
+      </div>
+
+      <div class="inputs" data-rise="4">
+        <div class="field f1" style="--fc:var(--c1);"><div class="field__head"><span class="field__num">🟢 Круг 1</span><span class="field__name">В чём ты уникален</span></div><textarea data-target="ct1" data-recap="rv1" maxlength="300" placeholder="За что меня хвалят на автомате? Что даётся легче, чем большинству? К кому идут за советом?"></textarea><div class="field__count"><span>0</span> / 300</div></div>
+        <div class="field f2" style="--fc:var(--c2);"><div class="field__head"><span class="field__num">🔴 Круг 2</span><span class="field__name">Что ты ненавидишь делать</span></div><textarea data-target="ct2" data-recap="rv2" maxlength="300" placeholder="Что выматывает за 2 часа? Что прокрастинирую больше всего?"></textarea><div class="field__count"><span>0</span> / 300</div></div>
+        <div class="field f3" style="--fc:var(--c3);"><div class="field__head"><span class="field__num">🟡 Круг 3</span><span class="field__name">Где у тебя рычаг</span></div><textarea data-target="ct3" data-recap="rv3" maxlength="300" placeholder="Аудитория? Опыт в нише? Связи? Доступ к данным? То, что нельзя купить за месяц"></textarea><div class="field__count"><span>0</span> / 300</div></div>
+        <div class="field f4" style="--fc:var(--c4);"><div class="field__head"><span class="field__num">🔵 Круг 4</span><span class="field__name">Где платит рынок в 2026</span></div><textarea data-target="ct4" data-recap="rv4" maxlength="300" placeholder="Где в моей сфере рынок платит больше, чем год назад? Какие услуги растут в цене?"></textarea><div class="field__count"><span>0</span> / 300</div></div>
+        <div class="field f5" style="--fc:var(--c5);"><div class="field__head"><span class="field__num">⚡ Круг 5</span><span class="field__name">Что AI не может вместо тебя</span></div><textarea data-target="ct5" data-recap="rv5" maxlength="300" placeholder="Что требует доверия, вкуса, ответственности, эмпатии? Что AI не повторит без меня?"></textarea><div class="field__count"><span>0</span> / 300</div></div>
+      </div>
+
+      <div class="vactions" data-rise="5">
+        <button class="vbtn vbtn--primary" id="btnDownload">📥 Скачать мою Карту (PNG)</button>
+        <button class="vbtn vbtn--dark" id="btnPrompt">🤖 Скопировать промпт для Claude</button>
+        <button class="vbtn vbtn--ghost" id="btnClear">🗑 Очистить</button>
+      </div>
+
+      <div class="vhowto" data-rise="5">
+        <div class="vhowto__tag">Как получить разбор от AI</div>
+        <ol>
+          <li><span class="step-n">1</span><span class="step-t">Заполни <strong>5 кругов</strong> — текст появится в диаграмме и расшифровке.</span></li>
+          <li><span class="step-n">2</span><span class="step-t">Нажми <strong>«Скачать мою Карту»</strong> — получишь картинку со своими ответами.</span></li>
+          <li><span class="step-n">3</span><span class="step-t">Нажми <strong>«Скопировать промпт»</strong>, открой <strong>claude.ai</strong>, прикрепи картинку и вставь промпт.</span></li>
+          <li><span class="step-n">4</span><span class="step-t">Claude найдёт твои сильные пересечения и Точки Б.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <div class="vtoast" id="vtoast"></div>
+
+  <!-- SLIDE 16 — Демо · Маша -->
+  <section class="slide s-deep" data-num="16" data-act="Акт 2" data-screen-label="16 Демо Маша">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">16</span> · Демо</div>
+      <h2 class="h1" data-rise="2">Как это работает на примере</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Маша · копирайтер · 5 лет опыта · стагнация заказов.</em></p>
+
+      <div class="grid g2 mt-l" style="gap:14px 28px;">
+        <div class="card" data-rise="3" style="border-color:var(--green);"><div class="idx green-t">🟢 Уникальность</div><p class="body">Тексты, которые «звучат как живой человек». Клиенты хвалили годами.</p></div>
+        <div class="card" data-rise="3" style="border-color:var(--coral);"><div class="idx accent">🔴 Ненавидит</div><p class="body">SEO-оптимизация, технические правки, форматирование под платформы.</p></div>
+        <div class="card" data-rise="3" style="border-color:var(--amber);"><div class="idx" style="color:var(--amber);">🟡 Рычаг</div><p class="body">800 подписчиков в Telegram + 4 года опыта в e-commerce-нише.</p></div>
+        <div class="card" data-rise="4" style="border-color:#4A90C2;"><div class="idx" style="color:#7AB8DC;">🔵 Рынок 2026</div><p class="body">Brand voice, AI-style guides, контент-стратегия для брендов.</p></div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);grid-column:1 / -1;"><div class="idx accent">⚡ Что AI не может</div><p class="body">«Слышать» голос конкретного бренда без её корректировки.</p></div>
+      </div>
+
+      <div class="stack mt-l" style="align-items:center;" data-rise="5">
+        <div style="font-family:var(--font-mono);color:var(--accent);font-size:32px;line-height:1;">↓</div>
+      </div>
+
+      <div class="rowtable mt-s" data-rise="5">
+        <div class="tr"><div class="q">🎯 Точка А</div><div class="a">Эксперт по brand voice (а не «просто копирайтер»).</div></div>
+        <div class="tr"><div class="q">🎯 Точка Б</div><div class="a">Продуктовый пакет: «Brand voice audit + AI style guide» для e-com брендов.</div></div>
+        <div class="tr"><div class="q">🎯 Модель</div><div class="a">Продуктизованный пакет · <strong style="white-space:nowrap;">$1 500–3 000</strong> за пакет · 8–12 клиентов в год = <strong style="white-space:nowrap;">$24K–36K</strong>.</div></div>
+      </div>
+
+      <p class="foot mt-m" data-rise="5"><em class="ser">Маша работала 5 лет. До диагностики не видела «brand voice» как продукт. После — увидела за 25 минут.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 17 — Бонус · Совет 6 экспертов -->
+  <section class="slide s-dark" data-num="17" data-act="Акт 2" data-screen-label="17 Совет 6">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">17</span> · Бонус</div>
+      <h2 class="h1" data-rise="2">Совет <span class="accent">6 экспертов</span> на твоей стороне</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Отдельный мини-урок придёт вместе со ссылкой на День 3.</em></p>
+
+      <p class="body mt-l maxw-m" data-rise="3">Ты пишешь свои ответы по 5 кругам → запускаешь Council метод → 6 экспертов смотрят на твою Точку А каждый со своего угла → Председатель собирает синтез.</p>
+
+      <div class="grid g3 mt-l">
+        <div class="card" data-rise="3"><div class="idx">🇯🇵 Икигай-практик</div><p class="body soft"><em class="ser">«Что любишь × в чём хорош».</em></p></div>
+        <div class="card" data-rise="3"><div class="idx">🤖 AI-консультант</div><p class="body soft"><em class="ser">«Где AI союзник, а где конкурент».</em></p></div>
+        <div class="card" data-rise="3"><div class="idx">💼 Бизнес-стратег</div><p class="body soft"><em class="ser">«Где деньги, где оффер» (Hormozi).</em></p></div>
+        <div class="card" data-rise="4"><div class="idx">🧠 Карьерный психолог</div><p class="body soft"><em class="ser">«Что мешает изнутри».</em></p></div>
+        <div class="card" data-rise="4"><div class="idx">🛠 Фрилансер-ветеран</div><p class="body soft"><em class="ser">«Как продать переход клиентам».</em></p></div>
+        <div class="card" data-rise="4"><div class="idx">✨ Эксперт по бренду</div><p class="body soft"><em class="ser">«В чём ты уникальный» (Priestley).</em></p></div>
+      </div>
+
+      <h2 class="h2 accent mt-l" data-rise="5">6 углов зрения на твою Точку А.</h2>
+      <p class="lead mt-s maxw-m" data-rise="5"><em class="ser">То, что обычный коуч даёт за €500. Я даю бесплатно — как бонус к марафону.</em></p>
+      <p class="foot mt-m" data-rise="5">Бонус откроется автоматически после Дня 3. Делать ничего не надо — придёт сам.</p>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 2.5 · СНЯТИЕ ВОЗРАЖЕНИЙ ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 2.5" data-screen-label="Акт 2.5 · Возражения">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 2.5</div>
+      <div class="act-title" data-rise="2">Возражения</div>
+      <p class="act-sub" data-rise="3">«Я слишком разный», «у меня нет уникальности», «это всё философия».</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 18 — Я слишком разный -->
+  <section class="slide s-paper" data-num="18" data-act="Акт 2.5" data-screen-label="18 Слишком разный">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">18</span> · Возражение №1</div>
+      <h2 class="h1 maxw-m" data-rise="2">«Я слишком разный» — это <span class="accent">плюс</span>, а не минус</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">В AI-эпоху именно «комбинаторы» выигрывают.</em></p>
+
+      <div class="stack mt-l" style="gap:clamp(16px,2.4vh,28px);">
+        <div data-rise="3"><div class="formula"><span class="accent">Юрист + AI</span></div><p class="foot mt-s">= тебя таких <strong style="white-space:nowrap;">100 000</strong></p></div>
+        <div data-rise="3"><div class="formula"><span class="accent">Юрист + AI + <span style="white-space:nowrap;">контент-маркетинг</span></span></div><p class="foot mt-s">= тебя таких <strong style="white-space:nowrap;">1 000</strong></p></div>
+        <div data-rise="4"><div class="formula"><span class="accent">Юрист + AI + контент + <span style="white-space:nowrap;">e-commerce</span></span></div><p class="foot mt-s">= тебя таких <strong>10</strong></p></div>
+        <div data-rise="4"><div class="formula"><span class="accent">+ опыт в Польше</span></div><p class="foot mt-s">= ты <strong>ОДИН</strong> на всём рынке СНГ</p></div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>Чем больше «разных» направлений у тебя сошлось — тем уникальнее ты на рынке.</strong></div>
+      <p class="foot mt-m" data-rise="5"><em class="ser">Карта Точки А как раз помогает увидеть твою конкретную комбинацию. Это не философия — это рыночное преимущество.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 19 — 2 возражения -->
+  <section class="slide s-deep" data-num="19" data-act="Акт 2.5" data-screen-label="19 2 возражения">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">19</span> · Возражения №2 и №3</div>
+      <h2 class="h1" data-rise="2">Два возражения, которые слышу чаще всего</h2>
+
+      <div class="split mt-l">
+        <div class="card" data-rise="3">
+          <div class="col-head soft">🤔 «У меня нет уникальности»</div>
+          <p class="body"><strong>Реальность:</strong> Gay Hendricks 30 лет исследовал тысячи людей. Вывод: <strong>у каждого</strong> есть зона гения.</p>
+          <p class="body soft mt-s">Но 80% живут в «зоне компетентности» <em class="ser">(умеют, но скучно)</em> или «зоне отличности» <em class="ser">(делают хорошо, но выгорают)</em>.</p>
+          <p class="body mt-s">Карта Точки А → <strong>выводит в зону гения</strong>.</p>
+          <p class="foot mt-m"><em class="ser">📚 Источник: «The Big Leap», Hendricks</em></p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);">
+          <div class="col-head accent">🤔 «Это всё философия — не работает»</div>
+          <p class="body"><strong>Реальность:</strong> промпт у тебя уже есть. Через 30 минут после марафона у тебя будет:</p>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ Заполненная Карта <em class="ser">(на бумаге или в Notion)</em></li>
+            <li class="body">✅ AI-инструмент для повторной диагностики</li>
+            <li class="body">✅ Бонус-инструмент Council метод</li>
+          </ul>
+          <p class="body mt-s"><strong>Это конкретный документ. Не философия.</strong></p>
+        </div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">Не уверен — просто заполни <strong>1 круг</strong>. Любой. Дальше пойдёт само.</div>
+      <div class="source"><span class="tag">[2]</span> Gay Hendricks · «The Big Leap» · Zone of Genius</div>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 3+4 · ПРИГЛАШЕНИЕ К ДНЮ 3 ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 3+4" data-screen-label="Акт 3+4 · Приглашение">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 3 + 4</div>
+      <div class="act-title" data-rise="2">Приглашение<br>к Дню 3</div>
+      <p class="act-sub" data-rise="3">Формула почти собрана. Осталось последнее звено.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 20 — Мост · Формула почти собрана -->
+  <section class="slide s-deep" data-num="20" data-act="Акт 3+4" data-screen-label="20 Мост формула">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">20</span> · Мост к Дню 3</div>
+      <h2 class="h1" data-rise="2">Что у тебя теперь есть</h2>
+      <div class="formula mt-l" data-rise="3"><span class="accent">Экспертиза</span> <span class="op">×</span> AI <span class="op">×</span> Бизнес-модель <span class="op">=</span> ты пригоден к рынку</div>
+
+      <div class="numlist mt-l" style="gap:clamp(14px,2.4vh,28px);">
+        <div class="numitem" data-rise="3" style="grid-template-columns:auto auto 1fr;align-items:center;gap:18px;"><div class="n" style="font-size:clamp(40px,5.2vw,80px);color:var(--green);">✅</div><div class="h3 green-t">Экспертиза</div><div class="body soft">= есть (Карта Точки А — сегодня)</div></div>
+        <div class="numitem" data-rise="4" style="grid-template-columns:auto auto 1fr;align-items:center;gap:18px;"><div class="n" style="font-size:clamp(40px,5.2vw,80px);color:var(--green);">✅</div><div class="h3 green-t">AI</div><div class="body soft">= понимаешь (Карта рынка — вчера)</div></div>
+        <div class="numitem" data-rise="5" style="grid-template-columns:auto auto 1fr;align-items:center;gap:18px;"><div class="n" style="font-size:clamp(40px,5.2vw,80px);color:var(--accent);">❗</div><div class="h3 accent">Бизнес-модель</div><div class="body soft">= последний кусок (завтра)</div></div>
+      </div>
+
+      <h2 class="h-display accent mt-l" data-rise="5" style="font-size:clamp(34px,6.4vw,92px);">У тебя теперь <span style="white-space:nowrap;">2/3</span> формулы.</h2>
+      <p class="foot mt-m maxw-m" data-rise="5"><em class="ser">Завтра — самый практичный день марафона. 7 рабочих моделей + поможем выбрать ТВОЮ — под Точку А, которую ты собрал сегодня.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 21 — Тизер 7 моделей -->
+  <section class="slide s-paper" data-num="21" data-act="Акт 3+4" data-screen-label="21 Тизер 7 моделей">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">21</span> · Завтра</div>
+      <h2 class="h1" data-rise="2">7 моделей · <span class="accent">цифры, не теория</span></h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Каждая модель — с реальным кейсом, методологией и фильтром «подойдёт ли тебе».</em></p>
+
+      <div class="bars mt-l">
+        <div class="bar hot" data-rise="3"><div class="lab">Модель 1 <em class="ser">самая массовая</em></div><div class="track" style="width:30%;"></div><div class="val">$5–8K/мес</div></div>
+        <div class="bar hot" data-rise="3"><div class="lab">Модель 2</div><div class="track" style="width:55%;"></div><div class="val">$8–20K/мес</div></div>
+        <div class="bar hot" data-rise="3"><div class="lab">Модель 3</div><div class="track" style="width:65%;"></div><div class="val">$10–25K/мес</div></div>
+        <div class="bar hot" data-rise="4"><div class="lab">Модель 4 <em class="ser">если есть аудитория</em></div><div class="track" style="width:38%;"></div><div class="val">$3–15K/мес</div></div>
+        <div class="bar hot" data-rise="4"><div class="lab">Модель 5 <em class="ser">премиум</em></div><div class="track" style="width:78%;"></div><div class="val">$30–250K/год</div></div>
+        <div class="bar hot" data-rise="4"><div class="lab">Модель 6 <em class="ser">топ-эксперты</em></div><div class="track" style="width:88%;"></div><div class="val">$25–80K/мес</div></div>
+        <div class="bar hot" data-rise="5"><div class="lab">Модель 7 <em class="ser">5% success rate</em></div><div class="track" style="width:100%;"></div><div class="val">потолок ∞</div></div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5">Тебе не нужны все 7. Тебе нужна <strong>1</strong> — но твоя. Сегодняшняя Карта подскажет, какие 2–3 подходят именно тебе.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 22 — If/All закрытие -->
+  <section class="slide s-deep" data-num="22" data-act="Акт 3+4" data-screen-label="22 If/All">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">22</span> · Если</div>
+      <h2 class="h1" data-rise="2">Если ты сегодня вынес хоть одну мысль</h2>
+
+      <div class="stack mt-l" style="gap:clamp(18px,2.6vh,30px);">
+        <div class="plashka" data-rise="3"><strong>Если</strong> ты уже хотя бы начал заполнять Карту — Дня 3 жди. Это твой день.</div>
+        <div class="plashka" data-rise="4"><strong>Если</strong> ты пока не уверен в своих ответах — всё равно жди. Кейсы на Дне 3 сдвинут вопросы, которые ты не смог закрыть сегодня.</div>
+        <div class="plashka green" data-rise="5"><strong>В любом случае</strong> — у тебя есть 24 часа на одно: запусти AI-промпт хотя бы по <strong>2 кругам из 5</strong>.</div>
+      </div>
+
+      <h2 class="h-display accent mt-l" data-rise="5" style="font-size:clamp(30px,5.6vw,82px);">Минимум на завтра: <span style="white-space:nowrap;">2 круга из 5.</span></h2>
+      <p class="foot mt-s" data-rise="5"><em class="ser">30 минут с промптом. Не больше.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 23 — Финал «До завтра» -->
+  <section class="slide s-dark" data-num="23" data-act="Акт 3+4" data-screen-label="23 До завтра">
+    <div class="slide__inner stack" style="align-items:center;text-align:center;">
+      <div class="kicker" data-rise>Это конец Дня 2</div>
+      <h2 class="h1 maxw-m" data-rise="2">Без Дня 3 — Карта Точки А упирается в <span class="accent">«и что теперь?»</span></h2>
+      <h2 class="h1 mt-s" data-rise="3">Завтра — <span class="accent">ответ</span>.</h2>
+      <div class="plashka mt-l maxw-m" data-rise="4"><strong>Сегодня</strong> ты увидел, <strong>КТО</strong> ты. <strong>Завтра</strong> — увидишь, <strong>ЧТО</strong> с этим делать. 7 моделей + фильтр под твою Карту.</div>
+      <h2 class="h-display accent mt-l" data-rise="5">До завтра.</h2>
+    </div>
+  </section>
+
+  <!-- ================= ИСТОЧНИКИ ================= -->
+  <section class="slide s-deep" data-num="Источники" data-act="Приложение" data-screen-label="Источники">
+    <div class="slide__inner">
+      <div class="kicker" data-rise>Источники · проверены 4 июня 2026</div>
+      <h2 class="h2" data-rise="2">Откуда цифры и концепции</h2>
+      <div class="grid g2 mt-l" data-rise="3" style="gap:14px 56px;">
+        <p class="source" style="margin:0;"><span class="tag">[1]</span> Jason Fladlien · «AI Will Kill These Businesses» — YouTube. Концепция вопроса-акселератора «убей свой бизнес». Также: Josh Kaufman TED — «20 часов до 90% proficiency».</p>
+        <p class="source" style="margin:0;"><span class="tag">[2]</span> Gay Hendricks · «The Big Leap» · Zone of Genius — en.wikipedia.org/wiki/Gay_Hendricks. 4 зоны: некомпетентности → компетентности → совершенства → гения.</p>
+        <p class="source" style="margin:0;"><span class="tag">[3]</span> Jim Collins · «Good to Great» · Hedgehog Concept — jimcollins.com/concepts/the-hedgehog-concept.html. 3 круга: в чём лучший в мире × страсть × экономический двигатель.</p>
+        <p class="source" style="margin:0;"><span class="tag">[доп.]</span> Икигай — Mieko Kamiya (1966), популяризировано Garcia &amp; Miralles (2016). 4 круга: что любишь × в чём хорош × за что платят × что миру нужно.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  // ---- Chrome: progress, counter, active slide ----
+  var deck=document.getElementById('deck');
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var bar=document.getElementById('progress');
+  var cLabel=document.getElementById('cLabel');
+  var actTag=document.getElementById('actTag');
+  var cTot=document.getElementById('cTot');
+  var doc=document.documentElement;
+
+  // всего контент-слайдов (с номером, исключая разделители и источники)
+  var totalContent=slides.filter(function(s){ return /^\d/.test(s.getAttribute('data-num')||''); }).length;
+  if(cTot) cTot.textContent='/ '+totalContent;
+
+  function bgType(s){ return s.classList.contains('s-dark')?'ink':(s.classList.contains('s-green')?'coral':'paper'); }
+
+  var prevA=document.getElementById('prevArrow');
+  var nextA=document.getElementById('nextArrow');
+
+  function update(){
+    var vh=window.innerHeight;
+    var st=window.scrollY||doc.scrollTop;
+    var max=doc.scrollHeight-vh;
+    bar.style.width=(max>0?(st/max*100):0)+'%';
+    var mid=st+vh*0.5;
+    var cur=slides[0], curIdx=0;
+    for(var i=0;i<slides.length;i++){
+      var s=slides[i];
+      if(s.offsetTop < st+vh*0.85){ s.setAttribute('data-deck-active',''); }
+      if(s.offsetTop<=mid && s.offsetTop+s.offsetHeight>mid){ cur=s; curIdx=i; }
+    }
+    var num=cur.getAttribute('data-num');
+    cLabel.textContent=num||'·';
+    actTag.textContent=cur.getAttribute('data-act')||'';
+    document.body.setAttribute('data-bg', bgType(cur));
+    if(prevA) prevA.classList.toggle('is-disabled', curIdx<=0);
+    if(nextA) nextA.classList.toggle('is-disabled', curIdx>=slides.length-1);
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+
+  // ---- Persist scroll position ----
+  var KEY='aimap_day2_scroll';
+  var saveT;
+  window.addEventListener('scroll',function(){
+    clearTimeout(saveT);
+    saveT=setTimeout(function(){ try{ localStorage.setItem(KEY,window.scrollY); }catch(e){} },120);
+  },{passive:true});
+  try{
+    var saved=parseFloat(localStorage.getItem(KEY));
+    if(saved>0){ window.scrollTo({top:saved,behavior:'instant'}); }
+  }catch(e){}
+
+  update();
+  requestAnimationFrame(function(){ slides[0].setAttribute('data-deck-active',''); });
+
+  // ---- Keyboard nav ----
+  function go(dir){
+    var st=window.scrollY, target=null;
+    for(var i=0;i<slides.length;i++){
+      var top=slides[i].offsetTop;
+      if(dir>0 && top>st+10){ target=top; break; }
+      if(dir<0 && top<st-10){ target=top; }
+    }
+    if(target!==null) window.scrollTo({top:target,behavior:'smooth'});
+  }
+  window.addEventListener('keydown',function(e){
+    var ae=document.activeElement;
+    if(ae && (ae.tagName==='TEXTAREA'||ae.tagName==='INPUT'||ae.isContentEditable)) return;
+    if(e.key==='ArrowDown'||e.key==='PageDown'||e.key==='ArrowRight'){ e.preventDefault(); go(1); }
+    else if(e.key==='ArrowUp'||e.key==='PageUp'||e.key==='ArrowLeft'){ e.preventDefault(); go(-1); }
+  });
+  if(nextA) nextA.addEventListener('click',function(e){ e.preventDefault(); go(1); });
+  if(prevA) prevA.addEventListener('click',function(e){ e.preventDefault(); go(-1); });
+})();
+</script>
+
+<script>
+(function(){
+  var NL=String.fromCharCode(10);
+  var KEY='aimap_venn_data_embed';
+  var areas=document.querySelectorAll('.inputs textarea');
+  var toastEl=document.getElementById('vtoast'); var toastT;
+  if(!areas.length||!toastEl) return;
+  function showToast(m,t){ toastEl.textContent=m; toastEl.className='vtoast show '+(t||'ok'); clearTimeout(toastT); toastT=setTimeout(function(){ toastEl.classList.remove('show'); },2600); }
+  function fitFont(el,len){ var fs; if(len<=30)fs=15; else if(len<=60)fs=13.5; else if(len<=110)fs=12; else if(len<=170)fs=10.5; else if(len<=240)fs=9.5; else fs=8.5; el.style.fontSize=fs+'px'; }
+  function syncOne(ta){
+    var val=ta.value.trim();
+    var circle=document.getElementById(ta.getAttribute('data-target'));
+    var recapV=document.getElementById(ta.getAttribute('data-recap'));
+    if(val){ if(circle){circle.textContent=val; circle.classList.remove('empty'); fitFont(circle,val.length);} if(recapV){recapV.textContent=val; recapV.classList.remove('empty');} }
+    else { if(circle){circle.textContent='…'; circle.classList.add('empty'); circle.style.fontSize='13px';} if(recapV){recapV.textContent='— не заполнено'; recapV.classList.add('empty');} }
+    var cw=ta.parentNode.querySelector('.field__count'); if(cw){ var sp=cw.querySelector('span'); if(sp) sp.textContent=ta.value.length; cw.classList.toggle('over',ta.value.length>=300); }
+  }
+  function saveAll(){ var d={}; areas.forEach(function(ta){ d[ta.getAttribute('data-target')]=ta.value; }); try{ localStorage.setItem(KEY,JSON.stringify(d)); }catch(e){} }
+  areas.forEach(function(ta){ ta.addEventListener('input',function(){ syncOne(ta); saveAll(); }); });
+  try{ var saved=JSON.parse(localStorage.getItem(KEY)||'{}'); areas.forEach(function(ta){ var t=ta.getAttribute('data-target'); if(saved[t]){ ta.value=saved[t]; } syncOne(ta); }); }catch(e){}
+
+  var bd=document.getElementById('btnDownload');
+  if(bd) bd.addEventListener('click',function(){
+    var btn=this, area=document.getElementById('exportArea');
+    if(typeof html2canvas==='undefined'){ showToast('Библиотека не загрузилась (нужен интернет)','err'); return; }
+    btn.disabled=true; btn.textContent='⏳ Рендерю…';
+    html2canvas(area,{ backgroundColor:'#ECE7DB', scale:2, logging:false, useCORS:true }).then(function(canvas){
+      var l=document.createElement('a'); l.download='moya-karta-tochki-a.png'; l.href=canvas.toDataURL('image/png'); l.click();
+      showToast('Картинка скачана ✓','ok');
+    }).catch(function(err){ showToast('Ошибка рендера: '+err,'err'); }).finally(function(){ btn.disabled=false; btn.textContent='📥 Скачать мою Карту (PNG)'; });
+  });
+
+  var P_HEAD=['ИНСТРУКЦИЯ: заполни два блока ниже своими данными (БЛОК 1 и БЛОК 2).','Всё, что идёт после блоков — не трогай, это инструкции для AI.','Когда заполнил — вставь весь текст в Claude, ChatGPT, Gemini или Perplexity.','Получишь анализ своей Точки А и 2–3 ниши для запуска.'].join(NL);
+  var P_BLOCK1=['===========================================','БЛОК 1: ОБО МНЕ','===========================================','','ТЕКУЩАЯ СИТУАЦИЯ:','- Возраст: ','- Где живу (страна, город): ','- Профессия / текущая роль: ','- Опыт в профессии (лет): ','- Текущий месячный доход (примерно, валюта): ','- Сколько часов в неделю готов(а) работать: ','- Семейная ситуация (дети, обязательства, нагрузка): ','','ЧТО СЕЙЧАС НЕ РАБОТАЕТ:','[2–3 предложения. Что беспокоит: доход просел? клиенты уходят? выгорел?]','','МОИ АКТИВЫ:','- Аудитория (блог/канал/рассылка, сколько подписчиков): ','- Клиентская база (сколько клиентов сейчас и в прошлом, в каких нишах): ','- Сеть контактов («свои люди» в индустрии): ','- Готовые наработки (курсы, шаблоны, методологии, контент): ','- Опыт с AI (какими инструментами уже пользуюсь): ','','ЦЕЛЬ НА 12 МЕСЯЦЕВ:','[чего хочу достичь — в деньгах, формате жизни, профессиональном росте]','','ЧТО ОТТАЛКИВАЕТ:','[модели, которые точно не хочу: не хочу публичность, строить команду, долгие циклы продаж, учить других]'].join(NL);
+  var P_RULES=['===========================================','КОНЕЦ БЛОКОВ ДЛЯ ЗАПОЛНЕНИЯ. ДАЛЬШЕ — ИНСТРУКЦИИ ДЛЯ AI, НЕ МЕНЯЙ','===========================================','','# РОЛЬ','Ты — стратегический консультант по позиционированию экспертов в AI-эпоху. 500+ кейсов с фрилансерами, консультантами и владельцами экспертных бизнесов 3–15 лет опыта. Говоришь прямо, без воды, на «ты». Не коуч, не мотивационный спикер.','Задача — проанализировать Карту Точки А (БЛОК 2) с учётом контекста (БЛОК 1) и предложить 2–3 конкретные ниши + модели монетизации с максимальными шансами на успех.','','# КОНТЕКСТ 1: МЕТОДОЛОГИЯ КАРТЫ ТОЧКИ А','Синтез: Икигай + Zone of Genius (Gay Hendricks) + Hedgehog Concept (Jim Collins) + AI-фактор (5-й круг).','Точка А = пересечение всех 5 кругов = ниша, где сходятся уникальность, желание, рынок, рычаг и защита от AI-замены.','КРУГ 1. В ЧЁМ ТЫ УНИКАЛЕН — зона гениальности, сила.','КРУГ 2. ЧТО НЕНАВИДИШЬ — сигнал делегировать или отказаться.','КРУГ 3. ГДЕ РЫЧАГ — существующий актив, не строить с нуля.','КРУГ 4. ГДЕ ПЛАТИТ РЫНОК 2026 — платёжеспособный спрос на 2 года.','КРУГ 5. ЧТО AI НЕ МОЖЕТ — ров от автоматизации. После провалов Klarna и Morgan Stanley клиенты не доверяют автономному AI — нужен человек на критических точках.','','# КОНТЕКСТ 2: 7 МОДЕЛЕЙ ЗАРАБОТКА С AI В 2026','МОДЕЛЬ 1. AI-ПЛЕЧО. Та же услуга, AI берёт 60–80% рутины → выше цена. Кому: эксперты с повторяющимися задачами. Риск: демпинг и застревание.','МОДЕЛЬ 2. ВНЕДРЕНИЕ AI В ЧУЖОЙ БИЗНЕС. Одна узкая отрасль + автоматизации под ключ + поддержка, human-in-the-loop. Кому: 5+ лет в одной вертикали. Риск: без вертикали churn убивает.','МОДЕЛЬ 3. ПРОДУКТИЗОВАННЫЙ ПАКЕТ. Фикс-цена + фикс-срок + измеримый результат, AI ускоряет в 2–5 раз. Кому: узкий стандартизуемый результат. Риск: расползание задачи.','МОДЕЛЬ 4. ЗНАНИЕ КАК ПРОДУКТ. Курс/программа/сообщество. Продаёт трансформацию + доступ + сообщество, не информацию. Кому: методология + готовность учить и строить аудиторию. Риск: рынок затоплен.','МОДЕЛЬ 5. СВОЙ МЕДИА-ПРОЕКТ. Медиа-актив в узкой теме, 6–18 мес до аудитории, монетизация через несколько каналов. Кому: готовые 12–24 мес строить. Риск: долгий старт, выгорание.','МОДЕЛЬ 6. SERVICE-AS-SOFTWARE. AI-агент автономно выполняет функцию, клиент платит подписку, человек валидирует. Кому: эксперт в функции + автоматизация + одна отрасль. Риск: полная автоматизация = катастрофа (Klarna потеряла 2.3 млн долларов). Human-in-the-loop обязателен.','МОДЕЛЬ 7. СВОЙ AI-ПРОДУКТ (MICRO-SAAS). Узкий софт под одну задачу, подписка, портфель из 3–5. Кому: технический уклон ИЛИ партнёр + 6–18 мес без дохода + канал дистрибуции. Риск: самая низкая вероятность, дистрибуция убивает.','','# ТВОЯ ЗАДАЧА','1. Прочитай оба блока. Где данных мало — задай 1–3 уточняющих вопроса ДО анализа.','2. Оцени каждый из 5 кругов, подсветь абстрактные (узкие места).','3. Найди противоречия между кругами.','4. Найди 2–3 сильных пересечения с пояснением.','5. Предложи 2–3 ниши, узкие до отвращения (не «эксперт по консалтингу», а «AI-автоматизация записи пациентов для стоматологий в Польше»).','6. Под каждую нишу выбери одну из 7 моделей и объясни почему — на основе БЛОК 1.','7. Дай первый шаг на 3–7 дней с измеримым результатом.','8. Подсвети 1–2 слепых пятна.','','# ФОРМАТ ВЫВОДА','АНАЛИЗ КАРТЫ · УЗКИЕ МЕСТА И ПРОТИВОРЕЧИЯ · СИЛЬНЫЕ ПЕРЕСЕЧЕНИЯ · 2–3 КОНКРЕТНЫЕ НИШИ (формулировка + модель + почему + кому продавать + почему в Точке А) · РЕКОМЕНДАЦИЯ (приоритет №1) · ПЕРВЫЙ ШАГ · СЛЕПЫЕ ПЯТНА.','','# ОГРАНИЧЕНИЯ','Только конкретика. Ниши узкие. Не выдумывай цифры дохода (только «типичный диапазон — X–Y»). Не льсти. Не больше 3 ниш. Без философии work-life balance. Не предлагай модели против блока «Что отталкивает». Без эмодзи.','','# СТИЛЬ','Прямой, плотный, на «ты», короткие абзацы. Непонятно — задай 1–2 вопроса до анализа.','','Начинай.'].join(NL);
+  function block2Template(){ return ['===========================================','БЛОК 2: МОЯ КАРТА ТОЧКИ А','===========================================','','Если есть картинка с заполненной картой — приложи её к сообщению.','Если нет — заполни 5 кругов текстом ниже.','','КРУГ 1. В чём я уникален:','[что делаю лучше большинства, что хвалят клиенты, что даётся легко]','','КРУГ 2. Что я ненавижу делать:','[задачи, которые отнимают энергию, к которым откладываю, делаю через силу]','','КРУГ 3. Где у меня рычаг:','[что уже есть: аудитория, опыт в нише, контакты, репутация, наработки]','','КРУГ 4. Где платит рынок 2026:','[где есть платёжеспособный спрос в моей сфере и в ближайшие 2 года]','','КРУГ 5. Что AI не может вместо меня:','[что требует человеческого: суждение, эмпатия, вкус, ответственность]'].join(NL); }
+  function block2FromFields(){
+    var names=['КРУГ 1. В чём я уникален','КРУГ 2. Что я ненавижу делать','КРУГ 3. Где у меня рычаг','КРУГ 4. Где платит рынок 2026','КРУГ 5. Что AI не может вместо меня'];
+    var ids=['ct1','ct2','ct3','ct4','ct5'];
+    var L=['===========================================','БЛОК 2: МОЯ КАРТА ТОЧКИ А','===========================================','','(картинку с картой я приложил к сообщению — данные ниже дублируют её)',''];
+    for(var i=0;i<5;i++){ var el=document.querySelector('[data-target="'+ids[i]+'"]'); var v=el?(el.value||'').trim():''; L.push(names[i]+':'); L.push(v||'— (не заполнено)'); L.push(''); }
+    return L.join(NL);
+  }
+  function assemblePrompt(b2){ return P_HEAD+NL+NL+P_BLOCK1+NL+NL+b2+NL+NL+P_RULES; }
+  function copyText(text,okMsg){ var done=function(){ showToast(okMsg,'ok'); }; if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,function(){ fb(text); done(); }); } else { fb(text); done(); } }
+  function fb(text){ var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.top='-9999px'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta); }
+
+  var bcf=document.getElementById('btnCopyFull');
+  if(bcf) bcf.addEventListener('click',function(){ copyText(assemblePrompt(block2Template()),'Полный промпт скопирован — вставь в AI-чат'); });
+  var bp=document.getElementById('btnPrompt');
+  if(bp) bp.addEventListener('click',function(){
+    var filled=Array.prototype.filter.call(areas,function(ta){ return ta.value.trim(); }).length;
+    var b2=filled?block2FromFields():block2Template();
+    copyText(assemblePrompt(b2), filled?'Промпт с твоей картой скопирован → вставь в AI-чат':'Поля пустые — скопирован промпт-шаблон');
+  });
+  var bc=document.getElementById('btnClear');
+  if(bc) bc.addEventListener('click',function(){ if(!confirm('Очистить все 5 полей?')) return; areas.forEach(function(ta){ ta.value=''; syncOne(ta); }); try{ localStorage.removeItem(KEY); }catch(e){} showToast('Очищено','ok'); });
+})();
+</script>
+
+
+
+</body></html>

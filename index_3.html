@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карта AI-перехода · День 3 — 7 моделей заработка с AI</title>
+<meta name="description" content="7 рабочих моделей заработка с AI в 2026: цифры, кейсы, первый шаг. Фильтр через твою Карту Точки А + программа AI-Переход на 4 недели. Урок 3 марафона.">
+<meta name="theme-color" content="#E2542B">
+<meta name="author" content="Станислав Цыс">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Карта AI-перехода · День 3 — 7 моделей заработка с AI">
+<meta property="og:description" content="7 рабочих моделей заработка с AI в 2026: цифры, кейсы, первый шаг. Фильтр через твою Карту Точки А + программа AI-Переход на 4 недели. Урок 3 марафона.">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Карта AI-перехода · День 3 — 7 моделей заработка с AI">
+<meta name="twitter:description" content="7 рабочих моделей заработка с AI в 2026: цифры, кейсы, первый шаг. Фильтр через твою Карту Точки А + программа AI-Переход на 4 недели. Урок 3 марафона.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   КАРТА AI-ПЕРЕХОДА · День 1 — V2 «КАРУСЕЛЬ»
+   Кремовая миллиметровка · сверхжирный Golos · коралл · моно-лейблы
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root{
+  --paper:      #ECE7DB;   /* кремовый холст */
+  --paper-2:    #F3EFE5;   /* карточки */
+  --grid:       rgba(54,44,28,.09);  /* линии миллиметровки */
+  --grid-strong:rgba(54,44,28,.16);
+  --paper-line: #D6CEBC;
+
+  --ink:        #1A1712;   /* почти-чёрный тёплый */
+  --ink-2:      #221E18;
+  --ink-grid:   rgba(255,250,238,.06);
+  --ink-line:   #3A342A;
+
+  --coral:      #E2542B;
+  --accent:     var(--coral);
+  --green:      #1F8A5B;   /* семантика «растёт» */
+  --amber:      #E8A21C;
+  --red:        #D32F2F;
+
+  --on-paper:      #211C14;  /* заголовки */
+  --on-paper-soft: #6B6253;  /* подзаголовки */
+  --on-paper-faint:#A99D87;
+  --on-ink:        #F2EDE2;
+  --on-ink-soft:   #B7AE9D;
+  --on-ink-faint:  #6E6555;
+
+  --font-display: 'Golos Text', system-ui, sans-serif;
+  --font-body:    'Golos Text', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif:   'Golos Text', sans-serif;
+
+  --pad-x: clamp(24px, 6vw, 128px);
+  --maxw: 1280px;
+}
+
+/* ---------- Reset / base ---------- */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; scroll-snap-type:y proximity; }
+body{
+  font-family:var(--font-body);
+  color:var(--on-paper);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:34px 34px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body.no-grid{ background-image:none; }
+.deck{ }
+
+/* ---------- Slide ---------- */
+.slide{
+  position:relative;
+  min-height:100vh;
+  scroll-snap-align:start;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(80px,11vh,140px) var(--pad-x) clamp(64px,9vh,110px);
+  overflow:visible;
+}
+.slide__inner{ width:100%; max-width:var(--maxw); margin:0 auto; }
+
+/* фоновые режимы (s-paper и s-deep = основной кремовый; s-dark = тёмный; s-green = коралл-разделитель) */
+.s-paper, .s-deep{ background:transparent; color:var(--on-paper); }
+.s-dark{
+  background-color:var(--ink); color:var(--on-ink);
+  background-image:
+    linear-gradient(var(--ink-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ink-grid) 1px, transparent 1px);
+  background-size:34px 34px;
+}
+body.no-grid .s-dark{ background-image:none; }
+.s-green{ background-color:var(--coral); color:#FCEEE7; background-image:none; }
+
+/* ---------- Kicker (mono, coral) ---------- */
+.kicker{
+  font-family:var(--font-mono);
+  font-size:clamp(12px,1.05vw,15px);
+  font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent);
+  display:inline-flex; align-items:center; gap:.7em;
+  margin-bottom:clamp(18px,2.6vh,30px);
+}
+.kicker .num{ color:var(--accent); }
+.s-dark .kicker{ color:var(--coral); }
+.s-green .kicker{ color:#FCEEE7; }
+
+.eyebrow{
+  font-family:var(--font-mono); font-weight:600;
+  font-size:clamp(12px,1vw,14px); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:14px;
+}
+
+/* ---------- Type scale (heavy grotesque) ---------- */
+.h-display{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(46px,7.2vw,124px); line-height:0.92;
+  letter-spacing:-0.025em; text-wrap:balance;
+}
+.h1{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(36px,5.2vw,90px); line-height:0.98;
+  letter-spacing:-0.022em; text-wrap:balance;
+}
+.h2{
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(28px,3.7vw,58px); line-height:1.02;
+  letter-spacing:-0.018em; text-wrap:balance;
+}
+.h3{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(20px,2vw,31px); line-height:1.12; letter-spacing:-0.01em;
+}
+.lead{
+  font-family:var(--font-body); font-weight:600; font-style:normal;
+  font-size:clamp(19px,2.05vw,30px); line-height:1.32; color:var(--on-paper-soft);
+}
+.s-dark .lead{ color:var(--on-ink-soft); }
+.s-green .lead{ color:#FBE6DC; }
+.body{ font-size:clamp(16px,1.25vw,20px); line-height:1.5; font-weight:500; }
+.small{ font-size:clamp(14px,1vw,16px); line-height:1.5; font-weight:500; }
+
+.accent{ color:var(--accent); }
+.green-t{ color:var(--green); }
+em.ser{ font-style:normal; font-weight:600; color:var(--on-paper-soft); }
+.s-dark em.ser{ color:var(--on-ink-soft); }
+strong{ font-weight:800; }
+
+.soft{ color:var(--on-paper-soft); }
+.s-dark .soft{ color:var(--on-ink-soft); }
+.s-green .soft{ color:#FBE6DC; }
+
+/* ---------- Big numbers ---------- */
+.bignum{
+  font-family:var(--font-display); font-weight:900; line-height:0.86;
+  letter-spacing:-0.04em; font-size:clamp(64px,13vw,224px); color:var(--accent);
+}
+.midnum{
+  font-family:var(--font-display); font-weight:900; line-height:0.9;
+  letter-spacing:-0.035em; font-size:clamp(48px,7vw,120px); color:var(--accent);
+}
+
+/* ---------- Anchors / chips ---------- */
+.anchors{ display:flex; flex-wrap:wrap; gap:clamp(12px,1.6vw,22px); align-items:center; }
+.anchor{
+  font-family:var(--font-mono); font-weight:500;
+  font-size:clamp(13px,1.05vw,16px); letter-spacing:.03em;
+  padding:9px 18px; border:1.5px solid var(--on-paper); border-radius:100px;
+  color:var(--on-paper); white-space:nowrap;
+}
+.s-dark .anchor{ border-color:var(--on-ink-soft); color:var(--on-ink); }
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:13px; letter-spacing:.03em; font-weight:500;
+  padding:7px 14px; border-radius:100px; border:1.5px solid var(--paper-line);
+}
+
+/* ---------- Footnote ---------- */
+.foot{
+  font-family:var(--font-body); font-weight:500; font-style:normal;
+  font-size:clamp(14px,1.2vw,18px); line-height:1.42; color:var(--on-paper-soft);
+}
+.s-dark .foot{ color:var(--on-ink-soft); }
+.s-green .foot{ color:#FBE6DC; }
+
+/* ---------- Source ---------- */
+.source{
+  font-family:var(--font-mono); font-weight:400;
+  font-size:clamp(10px,.82vw,12.5px); letter-spacing:.02em;
+  color:var(--on-paper-faint); margin-top:clamp(20px,3vh,40px);
+  display:flex; align-items:flex-start; gap:.6em; word-break:break-word;
+}
+.s-dark .source{ color:var(--on-ink-faint); }
+.source .tag{ color:var(--accent); flex:none; font-weight:600; }
+
+/* ---------- Grids / cards ---------- */
+.grid{ display:grid; gap:clamp(16px,1.8vw,28px); }
+.g2{ grid-template-columns:repeat(2,1fr); }
+.g3{ grid-template-columns:repeat(3,1fr); }
+.g4{ grid-template-columns:repeat(4,1fr); }
+@media(max-width:860px){ .g2,.g3,.g4{ grid-template-columns:1fr; } }
+
+.card{
+  border:1.5px solid var(--paper-line); border-radius:10px;
+  padding:clamp(22px,2.2vw,34px); background:var(--paper-2);
+}
+.s-dark .card{ border-color:var(--ink-line); background:var(--ink-2); }
+.card .idx{
+  font-family:var(--font-mono); font-size:13px; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:16px;
+}
+
+/* ---------- Numbered list ---------- */
+.numlist{ display:flex; flex-direction:column; gap:clamp(22px,4vh,46px); }
+.numitem{ display:grid; grid-template-columns:auto 1fr; gap:clamp(20px,2.5vw,40px); align-items:start; }
+.numitem .n{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(56px,8vw,140px); line-height:.8; color:var(--accent); letter-spacing:-0.05em;
+}
+
+/* ---------- Timeline ---------- */
+.timeline{ display:flex; gap:0; position:relative; }
+.timeline::before{ content:""; position:absolute; left:0; right:0; top:18px; height:2px; background:var(--paper-line); }
+.s-dark .timeline::before{ background:var(--ink-line); }
+.tnode{ flex:1; position:relative; padding-right:24px; }
+.tnode .dot{ width:14px; height:14px; border-radius:50%; background:var(--on-paper-faint); position:relative; z-index:1; margin-bottom:20px; outline:6px solid var(--paper); }
+.s-dark .tnode .dot{ outline-color:var(--ink); background:var(--on-ink-faint); }
+.tnode.hot .dot{ background:var(--accent); width:20px; height:20px; margin-top:-3px; }
+.tnode .yr{ font-family:var(--font-display); font-weight:900; font-size:clamp(20px,2.2vw,34px); }
+.tnode.hot .yr{ color:var(--accent); }
+.tnode .desc{ font-size:clamp(13px,.95vw,16px); line-height:1.38; color:var(--on-paper-soft); margin-top:8px; font-weight:500; }
+.s-dark .tnode .desc{ color:var(--on-ink-soft); }
+@media(max-width:860px){
+  .timeline{ flex-direction:column; gap:24px; }
+  .timeline::before{ left:6px; right:auto; top:0; bottom:0; width:2px; height:auto; }
+  .tnode{ padding-left:34px; padding-right:0; }
+  .tnode .dot{ position:absolute; left:0; top:4px; margin:0; }
+}
+
+/* ---------- Bars ---------- */
+.bars{ display:flex; flex-direction:column; gap:14px; }
+.bar{ display:grid; grid-template-columns:minmax(140px,200px) 1fr auto; gap:18px; align-items:center; }
+.bar .lab{ font-size:clamp(14px,1.1vw,18px); font-weight:600; }
+.bar .track{ height:clamp(26px,3vh,40px); border-radius:5px; background:var(--on-paper-faint); }
+.s-dark .bar .track{ background:var(--ink-line); }
+.bar.hot .track{ background:var(--accent); }
+.bar .val{ font-family:var(--font-display); font-weight:900; font-size:clamp(16px,1.4vw,22px); white-space:nowrap; }
+.bar.hot .val{ color:var(--accent); }
+
+/* ---------- Split / rank ---------- */
+.split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3vw,56px); }
+@media(max-width:860px){ .split{ grid-template-columns:1fr; } }
+.col-head{ font-family:var(--font-mono); font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-bottom:22px; display:flex; align-items:center; gap:10px; }
+.rank{ display:flex; flex-direction:column; gap:12px; }
+.rank li{ list-style:none; display:flex; gap:14px; align-items:baseline; padding-bottom:12px; border-bottom:1.5px solid var(--paper-line); }
+.s-dark .rank li{ border-color:var(--ink-line); }
+.rank .r{ font-family:var(--font-mono); font-size:13px; color:var(--on-paper-faint); width:1.4em; flex:none; }
+.rank b{ font-size:clamp(15px,1.2vw,19px); font-weight:700; }
+.dn{ color:var(--red); } .up{ color:var(--green); }
+
+/* ---------- Row table ---------- */
+.rowtable{ display:flex; flex-direction:column; }
+.rowtable .tr{ display:grid; grid-template-columns:1fr 1.2fr; gap:clamp(20px,3vw,56px); padding:clamp(15px,2vh,24px) 0; border-top:1.5px solid var(--paper-line); }
+.s-dark .rowtable .tr{ border-color:var(--ink-line); }
+.rowtable .tr:last-child{ border-bottom:1.5px solid var(--paper-line); }
+.s-dark .rowtable .tr:last-child{ border-color:var(--ink-line); }
+.rowtable .q{ font-weight:800; font-size:clamp(15px,1.3vw,20px); }
+.rowtable .a{ font-size:clamp(14px,1.1vw,18px); line-height:1.42; color:var(--on-paper-soft); font-weight:500; }
+.s-dark .rowtable .a{ color:var(--on-ink-soft); }
+.rowtable .thead{ font-family:var(--font-mono); font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--on-paper-faint); border-top:none; padding-bottom:6px; }
+@media(max-width:760px){ .rowtable .tr{ grid-template-columns:1fr !important; gap:8px; } .rowtable .thead{ display:none; } }
+
+/* ---------- Formula ---------- */
+.formula{ font-family:var(--font-display); font-weight:900; font-size:clamp(26px,4.2vw,70px); line-height:1.02; letter-spacing:-0.02em; text-wrap:balance; }
+.formula .op{ color:var(--accent); font-weight:500; padding:0 .12em; }
+
+/* ---------- Dot matrix ---------- */
+.matrix-wrap{ display:flex; flex-direction:column; gap:24px; }
+.matrix{ display:grid; grid-template-columns:repeat(50,1fr); gap:clamp(2px,.35vw,5px); width:100%; max-width:620px; }
+.matrix i{ aspect-ratio:1; border-radius:50%; background:#C6BBA6; }
+.matrix i.g{ background:var(--green); }
+.matrix i.y{ background:var(--amber); }
+.matrix i.r{ background:var(--coral); }
+.legend{ display:flex; flex-direction:column; gap:14px; }
+.legrow{ display:flex; gap:12px; align-items:baseline; }
+.legrow .sw{ width:14px; height:14px; border-radius:50%; flex:none; position:relative; top:2px; }
+.legrow .pct{ font-family:var(--font-display); font-weight:900; font-size:clamp(20px,2vw,30px); width:2.6em; flex:none; }
+
+/* ---------- Plashka (callout) ---------- */
+.plashka{
+  border-left:4px solid var(--accent);
+  padding:clamp(15px,2vh,22px) clamp(20px,2.4vw,30px);
+  background:var(--paper-2);
+  font-family:var(--font-body); font-weight:600; font-style:normal;
+  font-size:clamp(16px,1.45vw,23px); line-height:1.36;
+  border-radius:0 8px 8px 0;
+}
+.s-dark .plashka{ background:var(--ink-2); }
+.plashka.green{ border-color:var(--green); }
+
+/* ---------- Divider (coral act break) ---------- */
+.divider{ justify-content:center; }
+.divider .act-no{ font-family:var(--font-mono); font-weight:600; font-size:clamp(13px,1.2vw,16px); letter-spacing:.28em; text-transform:uppercase; color:#FCEEE7; margin-bottom:24px; }
+.divider .act-title{ font-family:var(--font-display); font-weight:900; font-size:clamp(50px,10.5vw,180px); line-height:0.9; letter-spacing:-0.035em; text-wrap:balance; color:#FFFFFF; }
+.divider .act-sub{ font-family:var(--font-body); font-weight:600; font-size:clamp(18px,2vw,30px); color:#FBE6DC; margin-top:24px; max-width:18em; }
+
+/* ---------- Carousel chrome ---------- */
+.progress{ position:fixed; top:0; left:0; height:3px; width:0; background:var(--accent); z-index:60; transition:width .15s linear; }
+
+.bookmark{
+  position:fixed; top:0; left:clamp(20px,4vw,52px); z-index:60;
+  display:flex; align-items:center; gap:12px; padding-top:14px;
+  pointer-events:none;
+}
+.bookmark .flag{
+  width:26px; height:42px; background:var(--accent); flex:none;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+.bookmark .pg{ font-family:var(--font-mono); font-weight:700; font-size:clamp(15px,1.4vw,20px); letter-spacing:.04em; color:var(--on-paper); }
+.bookmark .pgtot{ font-family:var(--font-mono); font-weight:500; font-size:clamp(12px,1vw,15px); color:var(--on-paper-faint); }
+
+.act-tag{
+  position:fixed; top:clamp(16px,2.6vh,26px); right:clamp(20px,4vw,52px); z-index:60;
+  font-family:var(--font-mono); font-weight:600; font-size:clamp(11px,1vw,13px);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--on-paper-soft);
+  padding:7px 14px; border:1.5px solid var(--paper-line); border-radius:100px;
+  background:rgba(236,231,219,.6); backdrop-filter:blur(6px);
+}
+.handle{
+  position:fixed; left:clamp(20px,4vw,52px); bottom:clamp(18px,3vh,32px); z-index:60;
+  font-family:var(--font-mono); font-weight:700; font-size:clamp(13px,1.15vw,17px);
+  letter-spacing:.02em; color:var(--on-paper);
+}
+.next-arrow,
+.prev-arrow{
+  position:fixed; bottom:clamp(16px,3vh,30px); z-index:60;
+  width:clamp(46px,4vw,58px); height:clamp(46px,4vw,58px); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; text-decoration:none;
+  font-size:clamp(20px,2vw,26px); color:#fff; background:var(--accent);
+  box-shadow:0 4px 16px rgba(226,84,43,.35); transition:transform .2s, background .2s, opacity .2s;
+}
+.next-arrow{ right:clamp(20px,4vw,52px); }
+.prev-arrow{ left:clamp(20px,4vw,52px); }
+.next-arrow:hover,
+.prev-arrow:hover{ transform:translateY(-2px); }
+.next-arrow.is-disabled,
+.prev-arrow.is-disabled{ opacity:.35; pointer-events:none; }
+
+/* chrome adapts to bg */
+body[data-bg="ink"] .bookmark .pg{ color:var(--on-ink); }
+body[data-bg="ink"] .bookmark .pgtot{ color:var(--on-ink-faint); }
+body[data-bg="ink"] .act-tag{ color:var(--on-ink-soft); border-color:var(--ink-line); background:rgba(26,23,18,.5); }
+body[data-bg="ink"] .handle{ color:var(--on-ink); }
+body[data-bg="coral"] .bookmark .flag{ background:#fff; }
+body[data-bg="coral"] .bookmark .pg{ color:#fff; }
+body[data-bg="coral"] .bookmark .pgtot{ color:#FBE6DC; }
+body[data-bg="coral"] .act-tag{ color:#FCEEE7; border-color:rgba(255,255,255,.4); background:rgba(226,84,43,.3); }
+body[data-bg="coral"] .handle{ color:#fff; }
+body[data-bg="coral"] .next-arrow,
+body[data-bg="coral"] .prev-arrow{ background:#fff; color:var(--coral); box-shadow:0 4px 16px rgba(0,0,0,.18); }
+body[data-bg="coral"] .progress{ background:#fff; }
+
+/* ---------- Scroll hint ---------- */
+.scroll-hint{ position:absolute; left:50%; bottom:clamp(22px,4vh,40px); transform:translateX(-50%); font-family:var(--font-mono); font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--on-paper-faint); display:flex; flex-direction:column; align-items:center; gap:10px; animation:bob 2.4s ease-in-out infinite; }
+.s-dark .scroll-hint{ color:var(--on-ink-faint); }
+.scroll-hint .ar{ width:1px; height:30px; background:linear-gradient(var(--on-paper-faint),transparent); }
+@keyframes bob{ 0%,100%{ transform:translate(-50%,0);} 50%{ transform:translate(-50%,6px);} }
+
+/* ---------- Entrance (transform-only) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes riseIn{ from{ transform:translateY(30px); } to{ transform:none; } }
+  .slide[data-deck-active] [data-rise]{ animation:riseIn .7s cubic-bezier(.2,.7,.2,1); }
+  .slide[data-deck-active] [data-rise="2"]{ animation-delay:.07s; }
+  .slide[data-deck-active] [data-rise="3"]{ animation-delay:.14s; }
+  .slide[data-deck-active] [data-rise="4"]{ animation-delay:.21s; }
+  .slide[data-deck-active] [data-rise="5"]{ animation-delay:.28s; }
+}
+
+/* ---------- Utilities ---------- */
+.mt-s{ margin-top:clamp(14px,2vh,22px); }
+.mt-m{ margin-top:clamp(22px,3.4vh,40px); }
+.mt-l{ margin-top:clamp(34px,5vh,64px); }
+.row{ display:flex; gap:clamp(14px,2vw,28px); flex-wrap:wrap; }
+.maxw-s{ max-width:760px; } .maxw-m{ max-width:980px; }
+.stack{ display:flex; flex-direction:column; }
+
+</style>
+
+<style id="day3-extra">
+/* День 3 · локальный лаймовый акцент для подсветки тарифа */
+:root{ --lime:#C8FF00; }
+.s-paper .lime-card{ background:#F8FBE4; border-color:var(--lime) !important; box-shadow:0 0 0 4px rgba(200,255,0,.35); }
+.s-dark   .lime-card{ background:rgba(200,255,0,.06); border-color:var(--lime) !important; box-shadow:0 0 0 4px rgba(200,255,0,.18); }
+.lime-badge{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--font-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  padding:6px 12px; border-radius:100px; background:var(--lime); color:#1A1712; margin-bottom:12px;
+}
+.price-old{ color:var(--on-paper-faint); text-decoration:line-through; font-weight:500; font-size:.66em; margin-left:.4em; vertical-align:middle; }
+.s-dark .price-old{ color:var(--on-ink-faint); }
+.tier-num{ font-family:var(--font-display); font-weight:900; font-size:clamp(36px,4.4vw,68px); letter-spacing:-0.03em; line-height:1; color:var(--accent); margin:8px 0 4px; }
+.lime-card .tier-num{ color:#1A1712; }
+.cta-btn{
+  display:inline-block; font-family:var(--font-mono); font-weight:700; font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+  padding:14px 22px; border-radius:100px; background:var(--accent); color:#fff; text-decoration:none;
+  margin-top:14px; transition:transform .2s;
+}
+.cta-btn:hover{ transform:translateY(-2px); }
+.lime-card .cta-btn{ background:#1A1712; color:var(--lime); }
+.cta-btn.ghost{ background:transparent; color:var(--accent); border:1.5px solid var(--accent); }
+.s-dark .cta-btn.ghost{ color:var(--accent); }
+.model-meta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+.model-meta .chip{ background:rgba(0,0,0,.03); }
+.model-meta .chip strong{ white-space:nowrap; }
+.s-dark .model-meta .chip{ background:rgba(255,255,255,.04); border-color:var(--ink-line); }
+
+/* ===== ГЛОБАЛЬНЫЕ RESPONSIVE-ФИКСЫ (День 3) ===== */
+/* nowrap для денежных/числовых значений */
+.tier-num,
+.bignum,
+.midnum,
+.formula,
+.bar .val{ min-width:0; }
+.tier-num{ white-space:nowrap; }
+
+/* любые inline grid-template-columns на узких → 1 колонка */
+@media(max-width:860px){
+  [style*="grid-template-columns"]{ grid-template-columns:1fr !important; }
+}
+@media(max-width:520px){
+  .slide{ padding-top:clamp(72px,10vh,100px); padding-bottom:clamp(56px,8vh,80px); }
+  .h-display{ font-size:clamp(38px,9vw,64px); }
+}
+
+/* flex-children min-width страховка */
+.numitem > *,
+.bar > *,
+.rowtable .tr > *{ min-width:0; }
+
+/* ===== СЛАЙД 6 — обзор 7 моделей (4-колоночный rowtable) ===== */
+@media(max-width:760px){
+  .rowtable .tr[style*="grid-template-columns"]{
+    grid-template-columns:auto 1fr !important;
+    gap:8px 14px !important;
+  }
+  .rowtable .tr[style*="grid-template-columns"] > *:nth-child(3),
+  .rowtable .tr[style*="grid-template-columns"] > *:nth-child(4){
+    grid-column:2;
+  }
+  .rowtable .tr.thead[style*="grid-template-columns"]{ display:none; }
+}
+.rowtable .tr .a strong{ white-space:nowrap; }
+
+/* ===== СЛАЙД 18 — AI-ПЕРЕХОД заголовок ===== */
+@media(max-width:520px){
+  .slide[data-num="19"] .h-display{ font-size:clamp(34px,11vw,52px); line-height:0.96; }
+}
+
+/* ===== СЛАЙД 20 — Stack of Value, центрованный итог ===== */
+@media(max-width:520px){
+}
+
+/* ===== СЛАЙД 21 — Тарифы ===== */
+@media(max-width:860px){
+  .slide[data-num="23"] .lime-card{ transform:none !important; }
+}
+.slide[data-num="23"] .tier-num{ word-spacing:-0.05em; }
+.slide[data-num="23"] .price-old{ white-space:nowrap; }
+.slide[data-num="23"] .cta-btn{ max-width:100%; overflow-wrap:break-word; }
+@media(max-width:520px){
+  .slide[data-num="23"] .tier-num{ font-size:clamp(34px,10vw,52px); }
+  .slide[data-num="23"] .cta-btn{ display:block; text-align:center; }
+}
+
+/* ===== СЛАЙД 23 — Telegram-handle ===== */
+.slide[data-num="25"] .h3 a.accent{ word-break:break-all; overflow-wrap:anywhere; }
+
+/* ===== СЛАЙД 24 — большой accent-вердикт ===== */
+@media(max-width:520px){
+  .slide[data-num="26"] .h2.accent{ font-size:clamp(24px,6.5vw,36px) !important; }
+}
+
+/* ===== СЛАЙД 25 — финальный заголовок ===== */
+@media(max-width:520px){
+  .slide[data-num="27"] .h-display{ font-size:clamp(32px,8.5vw,52px) !important; }
+}
+
+/* ===== СЛАЙД 3 — крупные цифры 7/2/1 ===== */
+@media(max-width:520px){
+  .numitem{ grid-template-columns:auto 1fr !important; gap:14px !important; }
+  .numitem .n{ font-size:clamp(44px,11vw,80px) !important; }
+}
+
+/* row.wrap страховка */
+.row{ flex-wrap:wrap; }
+</style>
+</head>
+<body data-bg="paper" class="">
+
+<div class="progress" id="progress"></div>
+
+<!-- карусельная обвязка -->
+<div class="bookmark" id="bookmark"><span class="flag"></span><span class="pg" id="cLabel">1</span><span class="pgtot" id="cTot">/ 27</span></div>
+<div class="act-tag" id="actTag">Часть 0</div>
+<a class="prev-arrow" id="prevArrow" href="#" aria-label="Назад">←</a>
+<a class="next-arrow" id="nextArrow" href="#" aria-label="Дальше">→</a>
+
+<main class="deck" id="deck">
+
+  <!-- ================= ЧАСТЬ 0 · СВЯЗКА С ДНЁМ 2 ================= -->
+
+  <!-- SLIDE 1 — Recap «Где мы в формуле» -->
+  <section class="slide s-deep" data-num="1" data-act="Часть 0" data-screen-label="1 Recap формула">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">1</span> · Recap</div>
+      <h1 class="h-display" data-rise="2">Это <span class="accent">День 3.</span></h1>
+      <p class="lead mt-m maxw-m" data-rise="3"><em class="ser">Финал марафона. Закрываем последний кусок формулы.</em></p>
+      <div class="formula mt-l" data-rise="4">Экспертиза <span class="op">×</span> AI <span class="op">×</span> <span class="accent">Бизнес-модель</span> <span class="op">=</span> ты пригоден к рынку</div>
+      <div class="numlist mt-l" style="gap:clamp(12px,2vh,22px);">
+        <div class="numitem" data-rise="4" style="grid-template-columns:auto auto 1fr;align-items:center;gap:18px;"><div class="n" style="font-size:clamp(36px,4.6vw,72px);color:var(--green);">✅</div><div class="h3 green-t">AI</div><div class="body soft">понял (День 1: карта рынка)</div></div>
+        <div class="numitem" data-rise="5" style="grid-template-columns:auto auto 1fr;align-items:center;gap:18px;"><div class="n" style="font-size:clamp(36px,4.6vw,72px);color:var(--green);">✅</div><div class="h3 green-t">Экспертиза</div><div class="body soft">увидел (День 2: Карта Точки А)</div></div>
+        <div class="numitem" data-rise="5" style="grid-template-columns:auto auto 1fr;align-items:center;gap:18px;"><div class="n" style="font-size:clamp(36px,4.6vw,72px);color:var(--accent);">❗</div><div class="h3 accent">Бизнес-модель</div><div class="body soft">сегодня</div></div>
+      </div>
+      <p class="foot mt-l maxw-m" data-rise="5"><em class="ser">Сегодня дам тебе не теорию, а карту моделей с цифрами, кейсами и первым шагом для каждой.</em></p>
+    </div>
+    <div class="scroll-hint"><span>листай</span><span class="ar"></span></div>
+  </section>
+
+  <!-- SLIDE 2 — Карта Дня 3 + Что унесёшь -->
+  <section class="slide s-paper" data-num="2" data-act="Часть 0" data-screen-label="2 Что внутри">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">2</span> · Карта дня</div>
+      <h2 class="h1" data-rise="2">Что ждёт и что унесёшь</h2>
+
+      <div class="eyebrow mt-l" data-rise="3">Что внутри</div>
+      <div class="grid g2 mt-s">
+        <div class="card" data-rise="3"><div class="idx">🗺 7 рабочих моделей</div><p class="body">С цифрами, кейсами, потолками и <strong>первым шагом</strong> для каждой.</p></div>
+        <div class="card" data-rise="3"><div class="idx">🎯 Как выбрать СВОЮ</div><p class="body">Фильтр через твою <strong>Карту Точки А</strong> из Дня 2.</p></div>
+        <div class="card" data-rise="4"><div class="idx">💪 5 установок, которые надо отпустить</div><p class="body">Психология перехода — без неё инструменты не помогут.</p></div>
+        <div class="card" data-rise="4"><div class="idx">🎁 Бонус: Секретный бонус</div><p class="body">Откроется после марафона.</p></div>
+      </div>
+
+      <div class="eyebrow mt-l" data-rise="5">Что унесёшь</div>
+      <ul class="stack mt-s" style="gap:12px;list-style:none;" data-rise="5">
+        <li class="body">✅ Понимание, какие <strong>2 модели</strong> подходят именно тебе</li>
+        <li class="body">✅ Первый шаг по каждой <em class="ser">(что сделать на этой неделе)</em></li>
+        <li class="body">✅ Бенчмарки успеха <em class="ser">(KPI на 3 / 6 / 9 месяцев)</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 1 · ЗАХВАТ ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 1" data-screen-label="Акт 1 · Захват">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 1</div>
+      <div class="act-title" data-rise="2">7 моделей</div>
+      <p class="act-sub" data-rise="3">Самый практичный день марафона. Без воды.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — Хук «Самый практичный день» -->
+  <section class="slide s-dark" data-num="3" data-act="Акт 1" data-screen-label="3 Хук обещание">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">3</span> · Обещание</div>
+      <h2 class="h1" data-rise="2">За 25 минут ты узнаешь</h2>
+      <div class="numlist mt-l">
+        <div class="numitem" data-rise="3"><div class="n">7</div><div><h3 class="h3">моделей</h3><p class="body soft mt-s">Заработка с AI — все с цифрами, кейсами, первым шагом.</p></div></div>
+        <div class="numitem" data-rise="4"><div class="n">2</div><div><h3 class="h3">модели — твои</h3><p class="body soft mt-s">Которые подходят именно тебе. Узнаешь свою комбинацию.</p></div></div>
+        <div class="numitem" data-rise="5"><div class="n">1</div><div><h3 class="h3">первый шаг</h3><p class="body soft mt-s">Который можно сделать на этой неделе.</p></div></div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">Без воды. Без хайпа. Без «100К за 30 дней». Только модели, которые реально работают в 2026.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — Big Domino «Не нужны все 7» -->
+  <section class="slide s-deep" data-num="4" data-act="Акт 1" data-screen-label="4 Big Domino">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">4</span> · Главное правило</div>
+      <h2 class="h1 mt-l" data-rise="2">Не нужны все 7.</h2>
+      <h2 class="h1 mt-s" data-rise="3">Нужна <span class="accent">1–2</span> — но твои.</h2>
+      <p class="lead mt-m maxw-m" data-rise="4">И найти их = не «выбрать из списка», а сопоставить со <strong>своей Точкой А</strong>.</p>
+      <div class="plashka green mt-l" data-rise="5">Сегодня покажу карту → даю фильтр → ты увидишь свои <strong>2 модели</strong> через 25 минут.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 — Тизер механизма (3 шага) -->
+  <section class="slide s-paper" data-num="5" data-act="Акт 1" data-screen-label="5 Алгоритм">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">5</span> · Алгоритм Дня 3</div>
+      <h2 class="h1" data-rise="2">3 шага — и ты увидишь свои модели</h2>
+      <div class="numlist mt-l">
+        <div class="numitem" data-rise="3"><div class="n">1</div><div><h3 class="h3">Карта 7 моделей</h3><p class="body soft mt-s"><em class="ser">Сейчас покажу.</em></p></div></div>
+        <div class="numitem" data-rise="4"><div class="n">2</div><div><h3 class="h3">Фильтр через твою Карту Точки А</h3><p class="body soft mt-s"><em class="ser">Из Дня 2.</em></p></div></div>
+        <div class="numitem" data-rise="5"><div class="n">3</div><div><h3 class="h3">Твои 2 модели + первый шаг</h3><p class="body soft mt-s"><em class="ser">Увидишь через 20 минут.</em></p></div></div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">Если не заполнил Карту Точки А вчера — открой её сейчас в параллельной вкладке. Без неё фильтр не сработает.</div>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 2 · 7 МОДЕЛЕЙ ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 2" data-screen-label="Акт 2 · 7 моделей">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 2</div>
+      <div class="act-title" data-rise="2">7 моделей</div>
+      <p class="act-sub" data-rise="3">Цифры. Кейсы. Первый шаг. Без теории.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 6 — Обзор 7 моделей -->
+  <section class="slide s-deep" data-num="6" data-act="Акт 2" data-screen-label="6 Обзор 7 моделей">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">6</span> · Обзор</div>
+      <h2 class="h1" data-rise="2">7 моделей на одной карте</h2>
+
+      <div class="rowtable mt-l" data-rise="3" style="--cols:auto 1fr auto auto;">
+        <div class="tr thead" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div>#</div><div>Модель</div><div>Чек/мес</div><div>Сложность</div></div>
+        <div class="tr" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div class="q accent">1</div><div class="q">AI-плечо в работе</div><div class="a"><strong>€4–8K</strong></div><div class="a green-t">🟢 Низкая</div></div>
+        <div class="tr" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div class="q accent">2</div><div class="q">Внедрение AI в чужой бизнес (с конкретной вертикалью)</div><div class="a"><strong>€5–18K</strong></div><div class="a" style="color:var(--amber);">🟡 Средняя</div></div>
+        <div class="tr" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div class="q accent">3</div><div class="q">Продуктизованный пакет&nbsp;</div><div class="a"><strong>€8–22K</strong></div><div class="a" style="color:var(--amber);">🟡 Средняя</div></div>
+        <div class="tr" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div class="q accent">4</div><div class="q">Знание как продукт</div><div class="a"><strong>€3–13K</strong></div><div class="a" style="color:var(--amber);">🟡 Средняя</div></div>
+        <div class="tr" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div class="q accent">5</div><div class="q">Свой медиа-проект</div><div class="a"><strong>€2–15K</strong></div><div class="a" style="color:var(--red);">🔴 Высокая</div></div>
+        <div class="tr" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div class="q accent">6</div><div class="q">Service-as-Software</div><div class="a"><strong>€3–14K</strong></div><div class="a" style="color:var(--red);">🔴 Высокая</div></div>
+        <div class="tr" style="grid-template-columns:auto 1fr auto auto;gap:clamp(16px,2vw,40px);"><div class="q accent">7</div><div class="q">Свой AI-продукт (Micro-SaaS)</div><div class="a"><strong>€0–9K</strong></div><div class="a" style="color:var(--red);">🔴 Самая высокая</div></div>
+      </div>
+      <p class="foot mt-l" data-rise="5"><em class="ser">Каждую модель сейчас разберу детально: цифры, кейсы, первый шаг.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 7 — Модель 1 · AI-плечо -->
+  <section class="slide s-paper" data-num="7" data-act="Акт 2" data-screen-label="7 Модель 1 AI-плечо">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">7</span> · Модель 1</div>
+      <h2 class="h1" data-rise="2">AI-плечо в работе</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Делаешь то же — но AI берёт 60–80% рутины. Поднимаешь цену, не объём.</em></p>
+
+      <div class="model-meta" data-rise="3">
+        <span class="chip"><strong>€4–8K</strong>/мес</span>
+        <span class="chip">1–3 мес до стабильности</span>
+        <span class="chip green-t">🟢 Низкая сложность</span>
+      </div>
+
+      <div class="grid g2 mt-l" style="gap:18px 32px;">
+        <div data-rise="3">
+          <div class="eyebrow">3 примера из ниш</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">— <strong>Психолог</strong> → AI пишет заметки сессий и домашки клиентам</li>
+            <li class="body">— <strong>Юрист</strong> → AI готовит черновик договора за 5 мин вместо 2 ч</li>
+            <li class="body">— <strong>Маркетолог</strong> → AI делает контент-план на месяц за 1 день</li>
+          </ul>
+        </div>
+        <div data-rise="4">
+          <div class="eyebrow">Кому подходит</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ Эксперты 3–15 лет с повторяющимися задачами</li>
+            <li class="body soft">❌ Не подходит, если услуги = вашу работу нельзя никак автоматизировать или ускорить</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>⚡ Первый шаг на этой неделе:</strong> возьми <strong>1 повторяемую задачу</strong>, собери для неё промпт-шаблон, замерь сэкономленное время на 3 задачах.</div>
+
+      <div class="grid g2 mt-l" style="gap:14px 32px;" data-rise="5">
+        <div><div class="eyebrow">📊 Бенчмарк</div><p class="small soft mt-s"><strong>3 мес:</strong> AI встроен в 1–2 процесса, −30% времени · <strong>6 мес:</strong> поднял ценник · <strong>9 мес:</strong> освободившееся время → Модели 2/3</p></div>
+        <div><div class="eyebrow">💼 Кейс</div><p class="small soft mt-s"><strong>Ghostwriting-агентство одного человека (США):</strong> AI пишет 90% черновиков LinkedIn-постов для 12 клиентов. <strong>$18 000/мес</strong>, работа 3 часа в неделю.</p></div>
+      </div>
+      <p class="foot mt-m" data-rise="5"><strong>⚠️ Главный риск:</strong> <em class="ser">демпинг («быстрее → дешевле»). Застревание здесь надолго вместо перехода в Модели 2 или 3.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 8 — Модель 2 · Внедрение AI в чужой бизнес -->
+  <section class="slide s-deep" data-num="8" data-act="Акт 2" data-screen-label="8 Модель 2 Внедрение">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">8</span> · Модель 2</div>
+      <h2 class="h1" data-rise="2">Внедрение AI <span class="accent">с узкой вертикалью</span></h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Берёшь одну отрасль и настраиваешь AI-автоматизации в их операционке.</em></p>
+
+      <div class="model-meta" data-rise="3">
+        <span class="chip"><strong>€5–18K</strong>/мес</span>
+        <span class="chip">3–6 мес до стабильности</span>
+        <span class="chip" style="color:var(--amber);">🟡 Средняя сложность</span>
+      </div>
+
+      <div class="grid g2 mt-l" style="gap:18px 32px;">
+        <div data-rise="3">
+          <div class="eyebrow">3 примера из ниш</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">— <strong>Психолог</strong> → AI-консультант первичной диагностики для клиник</li>
+            <li class="body">— <strong>Бухгалтер</strong> → автоматизация отчётности для SMB в Польше</li>
+            <li class="body">— <strong>Маркетолог</strong> → AI-генерация контента для e-com брендов</li>
+          </ul>
+        </div>
+        <div data-rise="4">
+          <div class="eyebrow">Кому подходит</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ 5+ лет опыта в <strong>конкретной отрасли</strong> + готов освоить Make/n8n, cluade code, skills и т.д.</li>
+            <li class="body soft">❌ Не подходит «AI-агентство для всех» — высокий отток без вертикали</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>⚡ Первый шаг на этой неделе:</strong> выбери <strong>одну узкую вертикаль</strong>, найди <strong>3 потенциальных клиента</strong>, сделай им бесплатный аудит «где AI принесёт пользу».</div>
+
+      <div class="grid g2 mt-l" style="gap:14px 32px;" data-rise="5">
+        <div><div class="eyebrow">📊 Бенчмарк</div><p class="small soft mt-s"><strong>3 мес:</strong> первый платящий клиент · <strong>6 мес:</strong> 3 retainer-клиента · <strong>9 мес:</strong> выручка стабильная</p></div>
+        <div><div class="eyebrow">💼 Кейсы</div><p class="small soft mt-s"><strong>Crescent Family Dental:</strong> AI прозвонил 2 500 «спящих» пациентов → +40 записей/мес · <strong>Granite HVAC:</strong> закрыли 8 из 9 колл-центров, +20% YoY · <strong>Hong LLC</strong> (иммиграционный юрист): 150+ кейсов параллельно</p></div>
+      </div>
+      <p class="foot mt-m" data-rise="5"><strong>⚠️ Главный риск:</strong> <em class="ser">без вертикали — высокий отток. Спасает только узкая ниша.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 9 — Модель 3 · Продуктизованный пакет ⭐ -->
+  <section class="slide s-paper" data-num="9" data-act="Акт 2" data-screen-label="9 Модель 3 Пакет">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">9</span> · Модель 3 · ⭐ Лучший trade-off</div>
+      <h2 class="h1" data-rise="2">Продуктизованный пакет</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Экспертиза в фикс-цена + фикс-срок + измеримый результат.</em></p>
+
+      <div class="model-meta" data-rise="3">
+        <span class="chip"><strong>€8–22K</strong>/мес</span>
+        <span class="chip">3–6 мес до стабильности</span>
+        <span class="chip" style="color:var(--amber);">🟡 Средняя сложность</span>
+      </div>
+
+      <div class="grid g2 mt-l" style="gap:18px 32px;">
+        <div data-rise="3">
+          <div class="eyebrow">3 примера из ниш</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">— <strong>Психолог</strong> → «8-недельная программа по уберанию тревожности под ключ» за €1500</li>
+            <li class="body">— <strong>Юрист</strong> → «Регистрация фирмы в Польше за 14 дней» за €1800</li>
+            <li class="body">— <strong>Маркетолог</strong> → «Brand voice audit + AI style guide» за €2500</li>
+          </ul>
+        </div>
+        <div data-rise="4">
+          <div class="eyebrow">Кому подходит</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ 3–15 лет с <strong>узким стандартизуемым результатом</strong></li>
+            <li class="body soft">❌ Не подходит стратегам — «индивидуальный подход» не масштабируется</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>⚡ Первый шаг на этой неделе:</strong> выпиши <strong>3 повторяющихся типа задач</strong>, выбери самую измеримую, упакуй в <strong>«название + срок + цена + результат»</strong>, тестируй на следующих 3 клиентах.</div>
+
+      <div class="grid g2 mt-l" style="gap:14px 32px;" data-rise="5">
+        <div><div class="eyebrow">📊 Бенчмарк</div><p class="small soft mt-s"><strong>3 мес:</strong> первый пакет без скидки · <strong>6 мес:</strong> &gt;60% конверсия · <strong>9 мес:</strong> 5–10 пакетов/мес</p></div>
+        <div><div class="eyebrow">💼 Кейсы</div><p class="small soft mt-s"><strong>VideoHusky:</strong> $1.2M/год на «безлимитный видеомонтаж» · <strong>Günter Richter:</strong> €15K/мес на «6-недельная программа стратегии» · <strong>SPI Research 2025:</strong> продуктизованные услуги — прибыль &gt;41%</p></div>
+      </div>
+      <p class="foot mt-m" data-rise="5"><strong>⚠️ Главный риск:</strong> <em class="ser">scope creep — клиент просит «ещё чуть-чуть» вне пакета. Жёсткие границы — ключ.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 10 — Модель 4 · Знание как продукт -->
+  <section class="slide s-deep" data-num="10" data-act="Акт 2" data-screen-label="10 Модель 4 Знание">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">10</span> · Модель 4</div>
+      <h2 class="h1" data-rise="2">Знание как продукт</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Курсы, программы, обучение. Продаёшь <strong>трансформацию + доступ + сообщество</strong>, а не информацию.</em></p>
+
+      <div class="model-meta" data-rise="3">
+        <span class="chip"><strong>€3K/мес → €200K/год</strong> (большой разброс)</span>
+        <span class="chip">медиана €4–13K/мес</span>
+        <span class="chip">6–12 мес</span>
+        <span class="chip" style="color:var(--amber);">🟡 Средняя</span>
+      </div>
+
+      <div class="grid g2 mt-l" style="gap:18px 32px;">
+        <div data-rise="3">
+          <div class="eyebrow">3 примера из ниш</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">— <strong>Психолог</strong> → когорта «Работа с тревожностью» на 8 недель</li>
+            <li class="body">— <strong>Маркетолог</strong> → онлайн-курс «AI для SMM» с группой</li>
+            <li class="body">— <strong>Финансист</strong> → платное сообщество по инвестициям</li>
+          </ul>
+        </div>
+        <div data-rise="4">
+          <div class="eyebrow">Кому подходит</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ 5+ лет с <strong>готовой методологией</strong> + готов учить</li>
+            <li class="body soft">❌ Не подходит без аудитории и без 6–12 мес без дохода</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>⚡ Первый шаг на этой неделе:</strong> опиши свою методологию в <strong>одну страницу</strong>. Найди <strong>5 человек из своей сети</strong>, готовых пройти её бесплатно в обмен на отзыв. Это твоя пилотная когорта.</div>
+
+      <div class="grid g2 mt-l" style="gap:14px 32px;" data-rise="5">
+        <div><div class="eyebrow">📊 Бенчмарк</div><p class="small soft mt-s"><strong>6 мес:</strong> 1 000 подписчиков органически · <strong>12 мес:</strong> первая когорта ≥ 8 участников · <strong>18 мес:</strong> повторные запуски с маржой</p></div>
+        <div><div class="eyebrow">💼 Кейсы</div><p class="small soft mt-s"><strong>Логопед</strong> → группа «Запуск речи за 8 недель»: 12 семей × €150 = <strong>€1 800</strong> за поток · <strong>Таргетолог</strong> → курс «Первые клиенты на фрилансе»: 30 человек × €90 = <strong>€2 700</strong> с запуска · <strong>Бухгалтер</strong> → мини-курс «Налоги для ИП»: 50 человек × €60 = <strong>€3 000</strong></p></div>
+      </div>
+      <p class="foot mt-m" data-rise="5"><strong>⚠️ Главный риск:</strong> <em class="ser">рынок затоплен. Информация бесплатна (AI её и так даёт). Продавать надо трансформацию + доступ + сообщество.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 11 — Модель 5 · Свой медиа-проект -->
+  <section class="slide s-paper" data-num="11" data-act="Акт 2" data-screen-label="11 Модель 5 Медиа">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">11</span> · Модель 5</div>
+      <h2 class="h1" data-rise="2">Свой медиа-проект в <span class="accent">узкой нише</span></h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Строишь медиа-актив 12–24 мес. Монетизация через несколько каналов одновременно.</em></p>
+
+      <div class="model-meta" data-rise="3">
+        <span class="chip"><strong>€2–15K</strong>/мес</span>
+        <span class="chip">подписка + реклама + продукты + спонсорства</span>
+        <span class="chip">6–18 мес</span>
+        <span class="chip" style="color:var(--red);">🔴 Высокая (долго)</span>
+      </div>
+
+      <div class="grid g2 mt-l" style="gap:18px 32px;">
+        <div data-rise="3">
+          <div class="eyebrow">3 примера из ниш</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">— <strong>Психолог</strong> → Telegram «Психология эмиграции» + свои продукты</li>
+            <li class="body">— <strong>Юрист</strong> → YouTube «Бизнес в Польше для русскоязычных» + услуги</li>
+            <li class="body">— <strong>IT-эксперт</strong> → свой ТГ канал про конкретную узкую тему</li>
+          </ul>
+        </div>
+        <div data-rise="4">
+          <div class="eyebrow">Кому подходит</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ Готов 12–24 мес строить аудиторию, контент 1–3 раза/неделю</li>
+            <li class="body soft">❌ Не подходит, если нужен доход в ближайшие 6 месяцев</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>⚡ Первый шаг на этой неделе:</strong> выбери <strong>одну очень узкую нишу</strong> (не «бизнес», а «бизнес для русскоязычных в Польше»). Заведи Telegram и Substack. Напиши <strong>первые 3 поста</strong> — план твоего обещания аудитории.</div>
+
+      <div class="grid g2 mt-l" style="gap:14px 32px;" data-rise="5">
+        <div><div class="eyebrow">📊 Бенчмарк</div><p class="small soft mt-s"><strong>6 мес:</strong> 500–1 000 подписчиков · <strong>12 мес:</strong> первые платные · <strong>18 мес:</strong> стабильный доход</p></div>
+        <div><div class="eyebrow">💼 Кейсы</div><p class="small soft mt-s"><strong>About Poland</strong> (твой проект): 60K подписчиков → сотни лидов в воронку · <strong>Vas3k Club:</strong> тысячи платных участников · <strong>Lenny's Newsletter:</strong> $5M+/год один в нише</p></div>
+      </div>
+      <p class="foot mt-m" data-rise="5"><strong>⚠️ Главный риск:</strong> <em class="ser">долгий старт. Платформенный риск (алгоритмы YouTube/Instagram). Выгорание без AI-плеча в производстве контента.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 12 — Модель 6 · Service-as-Software -->
+  <section class="slide s-deep" data-num="12" data-act="Акт 2" data-screen-label="12 Модель 6 SaaS-сервис">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">12</span> · Модель 6</div>
+      <h2 class="h1" data-rise="2">Service-as-Software</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Не услуга и не SaaS. «AI-сотрудник по подписке» — клиент платит за функцию.</em></p>
+
+      <div class="split mt-l">
+        <div class="card" data-rise="3"><div class="col-head soft">SaaS (Модель 7)</div><p class="body">Продаёшь <strong>инструмент</strong> — клиент сам с ним работает.</p></div>
+        <div class="card" data-rise="3" style="border-color:var(--accent);"><div class="col-head accent">Service-as-Software</div><p class="body">Продаёшь <strong>результат</strong> — AI-агент работает за клиента, ты валидируешь.</p></div>
+      </div>
+
+      <div class="model-meta mt-l" data-rise="3">
+        <span class="chip"><strong>€3–14K</strong>/мес (€300–800/мес × 10–25 клиентов)</span>
+        <span class="chip">6–12 мес</span>
+        <span class="chip" style="color:var(--red);">🔴 Высокая (тех + продажи)</span>
+      </div>
+
+      <div class="grid g2 mt-l" style="gap:18px 32px;">
+        <div data-rise="4">
+          <div class="eyebrow">4 примера из ниш</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">— <strong>Зубная клиника</strong> → AI-консультант прозвона <em class="ser">(€400–1 000/мес)</em></li>
+            <li class="body">— <strong>Салон красоты</strong> → AI-администратор <em class="ser">(€200–500/мес)</em></li>
+            <li class="body">— <strong>E-commerce</strong> → AI-продавец в чате <em class="ser">(€300–700/мес)</em></li>
+            <li class="body">— <strong>SMB-бренды</strong> → AI-маркетолог <em class="ser">(€500–1 500/мес)</em></li>
+          </ul>
+        </div>
+        <div data-rise="4">
+          <div class="eyebrow">Кому подходит</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ 5+ лет в функции + Make/n8n + работа с одной отраслью</li>
+            <li class="body soft">❌ Не подходит без специализации и без готовности продавать</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>⚡ Первый шаг на этой неделе:</strong> выбери <strong>одну функцию</strong> (прозвон / запись / ответы в чате). Собери MVP-агента <strong>за 2 недели</strong> через Make/n8n + OpenAI API. Найди <strong>первого клиента</strong> и продай за €300/мес как пилот.</div>
+
+      <p class="foot mt-m" data-rise="5"><strong>⚠️ Главный риск:</strong> <em class="ser">низкая стоимость переключения (клиент уходит к конкуренту за выходные). Полная автоматизация = катастрофа (Klarna $2.3M потерь). <strong>Human-in-the-loop обязателен.</strong></em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 13 — Модель 7 · Micro-SaaS -->
+  <section class="slide s-paper" data-num="13" data-act="Акт 2" data-screen-label="13 Модель 7 SaaS">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">13</span> · Модель 7</div>
+      <h2 class="h1" data-rise="2">Свой AI-продукт <em class="ser">(Micro-SaaS)</em></h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Узкий софт по подписке. Тактика портфеля: запускаешь 3–5 продуктов параллельно.</em></p>
+
+      <div class="model-meta" data-rise="3">
+        <span class="chip"><strong>€0–9K MRR</strong> (50% застревают €1–9K)</span>
+        <span class="chip">6–18 мес</span>
+        <span class="chip" style="color:var(--red);">🔴 Самая высокая</span>
+      </div>
+
+      <div class="grid g2 mt-l" style="gap:18px 32px;">
+        <div data-rise="3">
+          <div class="eyebrow">3 примера из ниш</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">— <strong>Бухгалтер</strong> → micro-SaaS для сверки отчётов</li>
+            <li class="body">— <strong>Юрист</strong> → бот для типовых договоров</li>
+            <li class="body">— <strong>Дизайнер</strong> → AI-генератор презентаций для ниши</li>
+          </ul>
+        </div>
+        <div data-rise="4">
+          <div class="eyebrow">Кому подходит</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;">
+            <li class="body">✅ Технический уклон <strong>ИЛИ</strong> партнёр-разработчик + 6–18 мес без дохода</li>
+            <li class="body soft">❌ Не подходит без сильного канала дистрибуции</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>⚡ Первый шаг на этой неделе:</strong> выпиши <strong>3 проблемы</strong>, которые решаешь руками каждую неделю. Сделай прототип через <strong>Bolt.new или Lovable.dev за выходные</strong>. Покажи 10 коллегам.</div>
+
+      <div class="grid g2 mt-l" style="gap:14px 32px;" data-rise="5">
+        <div><div class="eyebrow">📊 Бенчмарк</div><p class="small soft mt-s"><strong>3 мес:</strong> 10 платящих · <strong>6 мес:</strong> €1K MRR · <strong>12 мес:</strong> €5K MRR · <em class="ser">только 10% дойдут до €10K MRR, 2% — до €100K MRR</em></p></div>
+        <div><div class="eyebrow">💼 Кейсы</div><p class="small soft mt-s"><strong>PhotoAI</strong> (Pieter Levels): $2M+/год на AI-фото · <strong>Nomad List</strong> (тот же): $30K+/мес с 2014 · <strong>99% случаев:</strong> доход до €5K MRR, не выше</p></div>
+      </div>
+      <p class="foot mt-m" data-rise="5"><strong>⚠️ Главный риск:</strong> <em class="ser">самая низкая вероятность успеха. Дистрибуция — главная проблема, не код. Платформенный риск (OpenAI выпустит ту же функцию бесплатно).</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 14 — Демо Маши → 2 модели -->
+  <section class="slide s-deep" data-num="14" data-act="Акт 2" data-screen-label="14 Демо Маши">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">14</span> · Демо</div>
+      <h2 class="h1" data-rise="2">Как это работает на практике</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">Маша из Дня 2 — копирайтер, 5 лет, стагнация.</em></p>
+      <p class="foot mt-s" data-rise="2"><em class="ser">Смоделированный пример на основе Карты Точки А — не реальная участница.</em></p>
+
+      <div class="split mt-l">
+        <div class="card" data-rise="3">
+          <div class="col-head soft">🗺 Её Карта Точки А (сводка)</div>
+          <ul class="stack mt-s" style="gap:10px;list-style:none;">
+            <li class="body">🟢 <strong>Уникальность:</strong> brand voice — пишет «как живой»</li>
+            <li class="body">🔴 <strong>Ненавидит:</strong> SEO, форматирование</li>
+            <li class="body">🟡 <strong>Рычаг:</strong> 800 подписчиков + 4 года e-commerce</li>
+            <li class="body">🔵 <strong>Рынок 2026:</strong> brand voice для брендов</li>
+            <li class="body">⚡ <strong>Ров:</strong> AI не «слышит» голос бренда без неё</li>
+          </ul>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);">
+          <div class="col-head accent">🎯 Её 2 модели (после фильтра)</div>
+          <p class="body mt-s"><strong>Основная — Модель 3 · Продуктизованный пакет</strong></p>
+          <p class="body soft mt-s"><em class="ser">«Brand voice audit + AI style guide» для e-com · €1 500–3 000 за пакет · 8–12 клиентов в год = €24K–36K</em></p>
+          <p class="foot mt-s">⚡ Упаковать процесс в пакет, протестировать на 2 знакомых брендах</p>
+
+          <p class="body mt-m"><strong>Вторая — Модель 5 · Свой медиа-проект</strong></p>
+          <p class="body soft mt-s"><em class="ser">Telegram + инста для копирайтеров о работе с AI + продажа шаблонов · €1–5K/мес поверх основной</em></p>
+          <p class="foot mt-s">⚡ Написать 3 поста о brand voice в свой канал, замерить отклик</p>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5">До этого Маша была «просто копирайтером». После Карты Точки А + 7 моделей — <strong>эксперт по brand voice с двумя источниками дохода</strong>.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 15 — 5 установок отпустить -->
+  <section class="slide s-dark" data-num="15" data-act="Акт 2" data-screen-label="15 5 установок">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">15</span> · Внутренний сдвиг</div>
+      <h2 class="h1" data-rise="2">Без этих 5 сдвигов модели не запустятся</h2>
+      <p class="lead mt-s maxw-m" data-rise="2"><em class="ser">80% работы — мышление. 20% — инструменты.</em></p>
+
+      <div class="rowtable mt-l" data-rise="3">
+        <div class="tr thead"><div>Отпустить</div><div>Принять</div></div>
+        <div class="tr"><div class="q soft" style="text-decoration:line-through;">Я продаю своё время</div><div class="a accent" style="font-weight:700;">Я продаю результат</div></div>
+        <div class="tr"><div class="q soft" style="text-decoration:line-through;">Я исполнитель — делаю руками</div><div class="a accent" style="font-weight:700;">Я архитектор — делаю выбор, что запустить</div></div>
+        <div class="tr"><div class="q soft" style="text-decoration:line-through;">Сначала отполирую — потом покажу</div><div class="a accent" style="font-weight:700;">Выпустил сырое — докрутил с AI на ходу</div></div>
+        <div class="tr"><div class="q soft" style="text-decoration:line-through;">Просижу всю ночь — это ценно</div><div class="a accent" style="font-weight:700;">Сделал за час с AI — это компетентность</div></div>
+        <div class="tr"><div class="q soft" style="text-decoration:line-through;">Сначала курс пройду — потом начну</div><div class="a accent" style="font-weight:700;">Учу инструмент в ходе реальной задачи</div></div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5"><strong>Это и есть переход.</strong> Не «выучить AI». А отказаться от 5 убеждений старой модели.</div>
+      <p class="foot mt-m" data-rise="5"><em class="ser">Это та работа, которую невозможно сделать за 25 минут видео. И дальше у меня к тебе один вопрос.</em></p>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 3 · ОФФЕР ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 3" data-screen-label="Акт 3 · Программа">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 3</div>
+      <div class="act-title" data-rise="2">Программа</div>
+      <p class="act-sub" data-rise="3">Два пути: сам или с сопровождением. Сначала — что внутри.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 16 — Два пути (opportunity cost) -->
+  <section class="slide s-deep" data-num="16" data-act="Акт 3" data-screen-label="16 Два пути">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">16</span> · Развилка</div>
+      <h2 class="h1 maxw-m" data-rise="2">Ты понял, что делать. Вопрос — <span class="accent">сколько стоит дойти?</span></h2>
+
+      <div class="split mt-l">
+        <div class="card" data-rise="3">
+          <div class="col-head soft">🛤 Путь 1 — Сам</div>
+          <p class="body">Это возможно. Я сам так шёл. Вот мой счёт за этот путь:</p>
+          <ul class="stack mt-s" style="gap:10px;list-style:none;">
+            <li class="body">— <strong>€17 400</strong> — столько я заплатил за обучение только за 2024 год (FORMULA, NOM, Mindvalley, MasterClass)</li>
+            <li class="body">— <strong>2 года</strong> — от прозрения в 2023 до работающей системы</li>
+            <li class="body">— Десятки гипотез в мусор, месяцы на инструменты, которые умерли через полгода</li>
+          </ul>
+          <p class="foot mt-m">Итог пути «сам»: <strong>~€15 000 и 1,5–2 года.</strong> Не потому что ты глупее меня — потому что без карты все платят за одни и те же ошибки.</p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);">
+          <div class="col-head accent">🛤 Путь 2 — По готовой системе →</div>
+          <ul class="stack mt-s" style="gap:10px;list-style:none;">
+            <li class="body">— 4 недели вместо двух лет</li>
+            <li class="body">— Мои €17 400 ошибок уже оплачены — тебе они достаются в виде маршрута</li>
+            <li class="body">— Сопровождение по этапам + личный фидбек</li>
+            <li class="body">— Группа людей, идущих параллельно</li>
+          </ul>
+        </div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">Никакого выбора прямо сейчас делать не надо. Сначала — два честных ответа и что внутри.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 17 — Почему я это делаю -->
+  <section class="slide s-paper" data-num="17" data-act="Акт 3" data-screen-label="17 Почему я это делаю">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">17</span> · Честно</div>
+      <h2 class="h1" data-rise="2">Зачем мне это? Два честных ответа.</h2>
+
+      <div class="split mt-l">
+        <div class="card" data-rise="3">
+          <h3 class="h2 accent">1. Это бизнес.</h3>
+          <p class="body mt-s">Помнишь Модель 4 из сегодняшней карты — «знание как продукт»? Эта программа — моя Модель 4. Я делаю ровно то, чему учу. Ты прямо сейчас внутри моей системы: рилсы → марафон → эта страница. Без команды из 50 человек — контент-завод и AI-плечо. То, что ты дочитал до этого слайда, — лучшая демонстрация, что система работает.</p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);">
+          <h3 class="h2 accent">2. Это поиск партнёров.</h3>
+          <p class="body mt-s">Один человек не может закрыть все ниши — это тоже принцип leverage. Моя цель дальше этой программы: с некоторыми из вас — партнёрства. Совместные проекты, мои проекты под вашу экспертизу, ваши ниши с моей системой. Лучший способ узнать человека в деле — пройти с ним 4 недели работы. Так что да: это обучение — ещё и воронка к будущим партнёрствам. Говорю как есть.</p>
+        </div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">И третье, техническое: это первая когорта. Мне нужны ваши результаты как кейсы — поэтому веду лично, мест мало, цена пилотная. Мы оба в этой сделке получаем больше, чем платим.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 18 — Кейс автора + цифры -->
+  <section class="slide s-dark" data-num="18" data-act="Акт 3" data-screen-label="18 Кейс автора">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">18</span> · Доказательство</div>
+      <h2 class="h1" data-rise="2">Я не теоретик этой карты</h2>
+
+      <div class="timeline mt-l" data-rise="3" style="--cols:1fr;">
+        <div class="tnode"><div class="dot"></div><div class="yr">2023</div><p class="desc">я понял, что продаю часы, и упёрся в потолок. Конкуренты регистрировали фирмы бесплатно — я не мог конкурировать объёмом.</p></div>
+        <div class="tnode hot"><div class="dot"></div><div class="yr">2026 ⚡</div><p class="desc">система вместо объёма — цифры ниже</p></div>
+      </div>
+
+      <div class="grid g4 mt-l" data-rise="4">
+        <div><div class="midnum" style="font-size:clamp(36px,4vw,64px);white-space:nowrap;">60 000</div><p class="small soft">подписчиков · медиапроект About Poland, ТОП-1 в нише</p></div>
+        <div><div class="midnum" style="font-size:clamp(30px,3.4vw,52px);">Сотни</div><p class="small soft">лидов в месяц на услуги — органика, ноль рекламного бюджета</p></div>
+        <div><div class="midnum" style="font-size:clamp(30px,3.4vw,52px);">3 языка</div><p class="small soft">контент, автоматизация, система вместо объёма</p></div>
+        <div><div class="midnum" style="font-size:clamp(34px,3.8vw,60px);white-space:nowrap;">10 лет</div><p class="small soft">в бизнесе, 500+ компаний до этого</p></div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5">Я не программист. Всё это собрано без единой строчки кода — той самой связкой «модель + поток + AI-рычаг», которую даю в программе.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 19 — Программа · AI-Переход 4 недели (без изменений) -->
+  <section class="slide s-dark" data-num="19" data-act="Акт 3" data-screen-label="19 AI-Переход программа">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">19</span> · Программа</div>
+      <h2 class="h-display" data-rise="2"><span class="accent">AI-ПЕРЕХОД</span><br>· 4 НЕДЕЛИ ·</h2>
+      <p class="lead mt-m maxw-m" data-rise="3"><em class="ser">За 4 недели ты собираешь свою рабочую модель заработка с AI и делаешь <strong>первого платящего клиента</strong>.</em></p>
+
+      <div class="eyebrow mt-l" data-rise="4">Уникальный механизм — 3 столпа</div>
+      <div class="numlist mt-s">
+        <div class="numitem" data-rise="4"><div class="n">1</div><div><h3 class="h3">КАРТА <em class="ser soft">— методология</em></h3><p class="body soft mt-s">3 элемента формулы (рынок + точка А + модель) собраны в один маршрут — не разрозненные курсы.</p></div></div>
+        <div class="numitem" data-rise="5"><div class="n">2</div><div><h3 class="h3">РАЗБОРЫ <em class="ser soft">— сопровождение</em></h3><p class="body soft mt-s">4 живых эфира + личный фидбек по твоей работе — не записанный курс, который пылится.</p></div></div>
+        <div class="numitem" data-rise="5"><div class="n">3</div><div><h3 class="h3">ПРАКТИКА <em class="ser soft">— результат</em></h3><p class="body soft mt-s">В конце 4-й недели — <strong>твой первый платящий клиент</strong> по новой модели.</p></div></div>
+      </div>
+      <div class="plashka green mt-l" data-rise="5">Это не курс. Это <strong>система с обратной связью под твою точку А</strong>.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 20 — 4 недели программы (без изменений) -->
+  <section class="slide s-paper" data-num="20" data-act="Акт 3" data-screen-label="20 4 недели">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">20</span> · Что делаем 4 недели</div>
+      <h2 class="h1" data-rise="2">Программа = <span class="accent">4 фазы с результатом</span> каждой</h2>
+
+      <div class="grid g4 mt-l">
+        <div class="card" data-rise="3"><div class="idx">📍 Неделя 1</div><h3 class="h3">Позиционирование</h3><p class="body soft mt-s">Углублённая работа с Картой Точки А + выбор 1–2 моделей.</p><p class="foot mt-m"><strong>Результат:</strong> <em class="ser">твоя «новая упаковка» одним предложением</em></p></div>
+        <div class="card" data-rise="3"><div class="idx">🎯 Неделя 2</div><h3 class="h3">Предложение</h3><p class="body soft mt-s">Конструируешь первый оффер под выбранную модель (Hormozi Grand Slam Offer).</p><p class="foot mt-m"><strong>Результат:</strong> <em class="ser">оффер на бумаге, готовый к тесту</em></p></div>
+        <div class="card" data-rise="4"><div class="idx">🚀 Неделя 3</div><h3 class="h3">Запуск</h3><p class="body soft mt-s">Тест на 5–10 потенциальных клиентов из твоей сети + первые AI-инструменты.</p><p class="foot mt-m"><strong>Результат:</strong> <em class="ser">живые ответы рынка + первые квалифицированные лиды</em></p></div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);"><div class="idx accent">💰 Неделя 4</div><h3 class="h3">Первый клиент</h3><p class="body soft mt-s">Закрытие первого платящего клиента + разбор твоего кейса.</p><p class="foot mt-m"><strong>Результат:</strong> <em class="ser">первая выручка по новой модели</em></p></div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">К концу 4-й недели у тебя на руках не «понимание», а <strong>запущенная модель и первый чек</strong>.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 21 — Артефакты результата -->
+  <section class="slide s-deep" data-num="21" data-act="Акт 3" data-screen-label="21 Артефакты результата">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">21</span> · Что останется на руках</div>
+      <h2 class="h1 maxw-m" data-rise="2">Через 4 недели у тебя на руках — не «знания». <span class="accent">Артефакты.</span></h2>
+
+      <div class="numlist mt-l">
+        <div class="numitem" data-rise="3" style="grid-template-columns:auto 1fr;gap:20px;align-items:start;"><div class="n" style="font-size:clamp(30px,3vw,48px);">📄</div><div><h3 class="h3">Одностраничник новой модели</h3><p class="body soft mt-s">что продаёшь, кому, за сколько. Одним листом.</p></div></div>
+        <div class="numitem" data-rise="3" style="grid-template-columns:auto 1fr;gap:20px;align-items:start;"><div class="n" style="font-size:clamp(30px,3vw,48px);">🎯</div><div><h3 class="h3">Готовый оффер</h3><p class="body soft mt-s">упакованная услуга с ценой, собранная по Grand Slam Offer.</p></div></div>
+        <div class="numitem" data-rise="4" style="grid-template-columns:auto 1fr;gap:20px;align-items:start;"><div class="n" style="font-size:clamp(30px,3vw,48px);">📡</div><div><h3 class="h3">План канала на 90 дней</h3><p class="body soft mt-s">откуда приходят клиенты: тёплая база, биржи или контент.</p></div></div>
+        <div class="numitem" data-rise="4" style="grid-template-columns:auto 1fr;gap:20px;align-items:start;"><div class="n" style="font-size:clamp(30px,3vw,48px);">🤖</div><div><h3 class="h3">Личный AI-Roadmap + пакет AI-скиллов</h3><p class="body soft mt-s">твой стек под твою нишу, без программирования.</p></div></div>
+        <div class="numitem" data-rise="5" style="grid-template-columns:auto 1fr;gap:20px;align-items:start;"><div class="n" style="font-size:clamp(30px,3vw,48px);">💶</div><div><h3 class="h3">Минимум 3 заявки на новую услугу</h3><p class="body soft mt-s">во время программы, не «когда-нибудь».</p></div></div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">Это не папка с курсом. Это <strong>запущенная модель и первые деньги</strong> по ней.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 22 — Возражения -->
+  <section class="slide s-paper" data-num="22" data-act="Акт 3" data-screen-label="22 Возражения">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">22</span> · Честно про сомнения</div>
+      <h2 class="h1" data-rise="2">Ты сейчас, наверное, думаешь…</h2>
+      <div class="rowtable mt-l" data-rise="3">
+        <div class="tr thead"><div>Ты думаешь</div><div>Реальность</div></div>
+        <div class="tr"><div class="q">🤔 «Я уже покупал курсы — лежат непройденные»</div><div class="a">Это не курс в записи: каждая неделя заканчивается живым разбором твоей работы. Не сделал — я это увижу. Курс можно бросить молча. Программу с обратной связью — нет.</div></div>
+        <div class="tr"><div class="q">🤔 «У меня нет времени, у меня клиенты и операционка»</div><div class="a">Формат — 4 недели по одному фокусу, 3–5 часов в неделю. Если нет и этого — честно: не покупай, сгорит.</div></div>
+        <div class="tr"><div class="q">🤔 «Дорого»</div><div class="a">Дорого по сравнению с чем? Путь «сам» — ~€15 000 и два года. Один клиент по новой модели — €1 500–2 500 — окупает любой тариф целиком.</div></div>
+        <div class="tr"><div class="q">🤔 «У меня не получится — я не технарь»</div><div class="a">Я сам не программист. Вся программа собрана без единой строчки кода. Тут нет «настроить сервер» — тут есть «упаковать то, что ты уже умеешь».</div></div>
+        <div class="tr"><div class="q">🤔 «Похоже на очередной инфобиз»</div><div class="a">Справедливое подозрение. Поэтому: никаких «100К за 30 дней», возврат 14 дней без условий, медианные цифры вместо выбросов. Решай по фактам, не по обещаниям.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 23 — Тарифы (якорь + дефицит) -->
+  <section class="slide s-deep" data-num="23" data-act="Акт 3" data-screen-label="23 Тарифы">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">23</span> · Цены для тех, кто прошёл марафон</div>
+      <h2 class="h1" data-rise="2">3 тарифа — выбери под свою задачу</h2>
+
+      <div class="plashka mt-l" data-rise="2"><strong>Путь «сам»: ~€15 000 и два года.</strong><br><strong>Программа: от €199 и 4 недели.</strong><br>Один клиент по новой модели — €1 500–2 500 — окупает любой тариф целиком.</div>
+
+      <div class="grid g3 mt-l" style="align-items:stretch;">
+        <div class="card" data-rise="3" style="display:flex;flex-direction:column;">
+          <div class="idx">АКЦИЯ</div>
+          <h3 class="h3">Базовый</h3>
+          <div class="tier-num">€199 <span class="price-old">€300</span></div>
+          <div class="eyebrow soft">Самостоятельно</div>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;flex:1;">
+            <li class="small">— Все 4 недели программы</li>
+            <li class="small">— Все шаблоны и фреймворки</li>
+            <li class="small">— Пакет AI-скиллов и агентов</li>
+            <li class="small">— Live-кикофф потока</li>
+            <li class="small">— Записи всех эфиров разбора</li>
+            <li class="small">— Общий чат потока</li>
+            <li class="small">— Доступ к материалам — 6 месяцев</li>
+          </ul>
+          <a class="cta-btn ghost" href="#">Оплатить базовый →</a>
+        </div>
+
+        <div class="card lime-card" data-rise="3" style="display:flex;flex-direction:column;transform:scale(1.04);">
+          <span class="lime-badge">⭐ Выбирают чаще всего</span>
+          <h3 class="h3">Средний</h3>
+          <div class="tier-num">€499 <span class="price-old">€700</span></div>
+          <div class="eyebrow">В группе</div>
+          <p class="small soft mt-s"><em class="ser">Всё из Базового, плюс:</em></p>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;flex:1;">
+            <li class="small">— Участие в <strong>4 живых эфирах</strong> разбора</li>
+            <li class="small">— <strong>Бонус:</strong> +4 недели сопровождения</li>
+            <li class="small">— Личная обратная связь по работам</li>
+            <li class="small">— Закрытый чат группового потока</li>
+            <li class="small">— Доступ к материалам — <strong>навсегда</strong></li>
+          </ul>
+          <a class="cta-btn" href="#">Оплатить средний →</a>
+        </div>
+
+        <div class="card" data-rise="4" style="display:flex;flex-direction:column;border-color:var(--accent);">
+          <div class="idx accent">1-НА-1 · С ОТБОРОМ</div>
+          <h3 class="h3">Премиум</h3>
+          <div class="tier-num">€999 <span class="price-old">€2 000</span></div>
+          <div class="eyebrow accent">Личный формат</div>
+          <p class="small soft mt-s"><em class="ser">Всё из Среднего, плюс:</em></p>
+          <ul class="stack mt-s" style="gap:8px;list-style:none;flex:1;">
+            <li class="small">— <strong>4 личные сессии 1-на-1</strong> (60 мин/нед)</li>
+            <li class="small">— Стартовая стратсессия 90 минут</li>
+            <li class="small">— 2 бонусные сессии в сопровождении</li>
+            <li class="small">— Личный доступ автору в Telegram</li>
+            <li class="small">— Персональный разбор каждого артефакта</li>
+          </ul>
+          <a class="cta-btn" href="#">Через диагностику →</a>
+        </div>
+      </div>
+
+      <div class="plashka mt-l" data-rise="5" style="border-color:var(--red);"><strong>Почему цена такая:</strong> это пилотный поток. Я веду его лично и разбираю каждую работу сам, поэтому: <strong>15 мест</strong> на Среднем, <strong>3 места</strong> на Премиум (Базовый — без лимита). Со второго потока цены вырастут минимум на 30%. Эта цена — плата за то, что ты идёшь первым и твой кейс попадёт в историю программы.</div>
+      <p class="foot mt-m" data-rise="5" style="text-align:center;"><em class="ser">Оплата картой через Stripe (безопасно). На Премиум — сначала созвон-диагностика с автором.</em></p>
+    </div>
+  </section>
+
+  <!-- SLIDE 24 — Две гарантии -->
+  <section class="slide s-paper" data-num="24" data-act="Акт 3" data-screen-label="24 Две гарантии">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">24</span> · Риск на мне</div>
+      <h2 class="h1" data-rise="2">Две гарантии — риск на мне</h2>
+
+      <div class="split mt-l">
+        <div class="card" data-rise="3" style="border-color:var(--green);">
+          <div class="col-head green-t">🛡 14 дней — безусловный возврат</div>
+          <p class="body mt-s">Любой тариф. Прошёл Неделю 1, понял, что не твоё, — возвращаю всё. Без вопросов.</p>
+        </div>
+        <div class="card" data-rise="4" style="border-color:var(--accent);">
+          <div class="col-head accent">🎯 Гарантия первых лидов <em class="ser">(Средний и Премиум)</em></div>
+          <p class="body mt-s">Если за 4 недели у тебя нет ни одной заявки на новую услугу — работаю с тобой 1-на-1 бесплатно до первой заявки. Без лимита по времени.</p>
+          <p class="foot mt-s">Условие — паритет: ты прошёл модули, сдал работы, был на эфирах. Я гарантирую результат, ты гарантируешь работу.</p>
+        </div>
+      </div>
+
+      <div class="card mt-l" data-rise="5">
+        <div class="col-head accent">🎯 Почему на Премиум — диагностика</div>
+        <p class="body mt-s">На тариф <strong>1-на-1</strong> я беру не всех. Сначала — созвон-диагностика (<strong>30 минут, бесплатно</strong>). На нём смотрю: подходит ли тебе формат 1-на-1, реалистичны ли твои ожидания, готов ли я инвестировать своё время в твой кейс.</p>
+        <p class="foot mt-s"><em class="ser">Если вижу что не сработаемся — рекомендую тариф Средний или Базовый. Не продаю Премиум насильно.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 25 — Как присоединиться -->
+  <section class="slide s-deep" data-num="25" data-act="Акт 3" data-screen-label="25 Как присоединиться">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">25</span> · Как присоединиться</div>
+      <h2 class="h1" data-rise="2">3 коробки — выбери свою</h2>
+
+      <div class="grid g3 mt-l">
+        <div class="card" data-rise="3">
+          <div class="idx">💳 Базовый / Средний</div>
+          <ol class="stack mt-s" style="gap:8px;list-style:decimal;list-style-position:inside;">
+            <li class="body">Жмёшь кнопку на лендинге</li>
+            <li class="body">Оплачиваешь картой через Stripe</li>
+            <li class="body">Получаешь доступ к Telegram-чату потока сразу</li>
+          </ol>
+          <p class="foot mt-m"><strong>Время до старта:</strong> <em class="ser">2 минуты</em></p>
+        </div>
+        <div class="card" data-rise="3" style="border-color:var(--accent);">
+          <div class="idx accent">🎯 Премиум (1-на-1)</div>
+          <ol class="stack mt-s" style="gap:8px;list-style:decimal;list-style-position:inside;">
+            <li class="body">Жмёшь «Записаться через диагностику»</li>
+            <li class="body">Выбираешь удобное время в календаре</li>
+            <li class="body">Созваниваемся на <strong>30 минут</strong></li>
+            <li class="body">Если подходим — оформляем оплату</li>
+          </ol>
+          <p class="foot mt-m"><strong>Время до старта:</strong> <em class="ser">1–3 дня</em></p>
+        </div>
+        <div class="card" data-rise="4">
+          <div class="idx">❓ Если есть вопросы</div>
+          <p class="body mt-s">Пиши напрямую в Telegram:</p>
+          <p class="h3 mt-s"><a href="https://t.me/stastsys" target="_blank" rel="noopener" class="accent" style="text-decoration:none;">@stastsys</a></p>
+          <p class="foot mt-m"><em class="ser">Отвечаю в течение 24 часов лично.</em></p>
+        </div>
+      </div>
+      <div class="plashka mt-l" data-rise="5">Старт первой когорты — <strong>1 июля</strong>. Подключиться можно до <strong>30 июня включительно</strong>. Дальше — следующая когорта не раньше сентября, дороже минимум на 30%.</div>
+    </div>
+  </section>
+
+  <!-- ================= АКТ 4 · ЗАКРЫТИЕ ================= -->
+  <section class="slide s-green divider" data-num="" data-act="Акт 4" data-screen-label="Акт 4 · Закрытие">
+    <div class="slide__inner">
+      <div class="act-no" data-rise>Акт 4</div>
+      <div class="act-title" data-rise="2">Выбор</div>
+      <p class="act-sub" data-rise="3">Спокойная арифметика</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 26 — Цена бездействия + закрытие -->
+  <section class="slide s-deep" data-num="26" data-act="Акт 4" data-screen-label="26 Цена бездействия">
+    <div class="slide__inner">
+      <div class="kicker" data-rise><span class="num">26</span> · Что если ничего не делать</div>
+      <h2 class="h1" data-rise="2">Если ты выбираешь — выбирай осознанно</h2>
+
+      <div class="eyebrow mt-l" data-rise="3">Цена бездействия · что будет через 12 месяцев</div>
+      <ul class="stack mt-s" style="gap:10px;list-style:none;" data-rise="3">
+        <li class="body">📉 <strong>Доход твой не вырос</strong> <em class="ser">(а инфляция съела 10–15%)</em></li>
+        <li class="body">📉 <strong>Конкуренты с AI</strong> делают то же за 1/3 времени <em class="ser">(твой клиент уходит к ним)</em></li>
+        <li class="body">📉 <strong>Появилось ещё 30 «модных направлений»</strong> <em class="ser">(ты в большем тумане)</em></li>
+        <li class="body">📉 <strong>Окно перехода сузилось</strong> <em class="ser">(теперь нужны не 4 недели, а 6 месяцев, чтобы догнать)</em></li>
+      </ul>
+      <p class="foot mt-s" data-rise="4"><em class="ser">Это не давление. Это арифметика рынка. Решай спокойно.</em></p>
+
+      <div class="plashka mt-l" data-rise="4">И последнее. Если бы программа дала тебе только ясность — какая модель твоя и почему — она бы окупила эти 4 недели. Но ты выходишь с упакованным оффером, планом канала на 90 дней и первыми заявками.</div>
+      <p class="lead mt-m maxw-m" data-rise="5">Это не для всех. Если ждёшь, что AI заработает за тебя, — не покупай, сэкономишь нам обоим время. Если у тебя есть экспертиза и 3–5 часов в неделю —</p>
+      <div class="row mt-m" data-rise="5"><a class="cta-btn" href="#" style="font-size:15px;padding:16px 28px;">Выбрать тариф →</a></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 27 — Финал: прощание + Чёрный список -->
+  <section class="slide s-dark" data-num="27" data-act="Акт 4" data-screen-label="27 Финал">
+    <div class="slide__inner">
+      <div class="kicker" data-rise>Это конец Дня 3</div>
+      <h2 class="h1 maxw-m" data-rise="2">Спасибо, что прошёл со мной все <span class="accent">3 дня</span>.</h2>
+      <p class="lead mt-m maxw-m" data-rise="3">Что бы ты ни решил — у тебя на руках полная Карта:</p>
+      <div class="grid g3 mt-s maxw-m" style="gap:10px 28px;" data-rise="3">
+        <p class="body">🗺 <strong>Карта рынка AI 2026</strong> <em class="ser">(День 1)</em></p>
+        <p class="body">🎯 <strong>Карта Точки А</strong> <em class="ser">(День 2)</em></p>
+        <p class="body">💼 <strong>Карта 7 моделей</strong> <em class="ser">(День 3)</em></p>
+      </div>
+
+      <div class="plashka green mt-l" data-rise="4">🎁 И неважно, купил ты программу или нет, — <strong>завтра тебе придёт День 4: Чёрный список 7 моделей-ловушек.</strong> Промпт-инженер на фрилансе, AI-агентство без вертикали, личный бренд как модель, партнёрки, AI-евангелист, generic-обёртки, «курс про AI» как продукт. Каждая — с реальной статистикой провала. Знание «куда НЕ идти» экономит 6–12 месяцев и €2 000–10 000 ошибок. Придёт автоматически на почту и в Telegram-бот.</div>
+
+      <p class="lead mt-l maxw-m" data-rise="5">До встречи — в программе, в моём Telegram (<a href="https://t.me/stastsys" target="_blank" rel="noopener" class="accent" style="text-decoration:none;">@stastsys</a>), или просто в твоей новой модели через год.</p>
+      <p class="lead mt-m" data-rise="5">— Станислав</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  // ---- Dot matrix (2500) ----
+  var m = document.getElementById('dotMatrix');
+  if(m){
+    var total=2500, green=400, yellow=8, red=1;
+    var arr=[];
+    for(var i=0;i<total;i++){ arr.push(i<green?'g':(i<green+yellow?'y':(i<green+yellow+red?'r':''))); }
+    for(var j=arr.length-1;j>0;j--){ var k=Math.floor(Math.random()*(j+1)); var t=arr[j]; arr[j]=arr[k]; arr[k]=t; }
+    var frag=document.createDocumentFragment();
+    for(var n=0;n<total;n++){ var d=document.createElement('i'); if(arr[n]) d.className=arr[n]; frag.appendChild(d); }
+    m.appendChild(frag);
+  }
+
+  // ---- Chrome: progress, counter, active slide ----
+  var deck=document.getElementById('deck');
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var bar=document.getElementById('progress');
+  var cLabel=document.getElementById('cLabel');
+  var actTag=document.getElementById('actTag');
+  var cTot=document.getElementById('cTot');
+  var doc=document.documentElement;
+
+  // всего контент-слайдов (с номером, исключая разделители и источники)
+  var totalContent=slides.filter(function(s){ return /^\d/.test(s.getAttribute('data-num')||''); }).length;
+  if(cTot) cTot.textContent='/ '+totalContent;
+
+  function bgType(s){ return s.classList.contains('s-dark')?'ink':(s.classList.contains('s-green')?'coral':'paper'); }
+
+  var prevA=document.getElementById('prevArrow');
+  var nextA=document.getElementById('nextArrow');
+
+  function update(){
+    var vh=window.innerHeight;
+    var st=window.scrollY||doc.scrollTop;
+    var max=doc.scrollHeight-vh;
+    bar.style.width=(max>0?(st/max*100):0)+'%';
+    var mid=st+vh*0.5;
+    var cur=slides[0], curIdx=0;
+    for(var i=0;i<slides.length;i++){
+      var s=slides[i];
+      if(s.offsetTop < st+vh*0.85){ s.setAttribute('data-deck-active',''); }
+      if(s.offsetTop<=mid && s.offsetTop+s.offsetHeight>mid){ cur=s; curIdx=i; }
+    }
+    var num=cur.getAttribute('data-num');
+    cLabel.textContent=num||'·';
+    actTag.textContent=cur.getAttribute('data-act')||'';
+    document.body.setAttribute('data-bg', bgType(cur));
+    if(prevA) prevA.classList.toggle('is-disabled', curIdx<=0);
+    if(nextA) nextA.classList.toggle('is-disabled', curIdx>=slides.length-1);
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+
+  // ---- Persist scroll position ----
+  var KEY='aimap_day3_scroll';
+  var saveT;
+  window.addEventListener('scroll',function(){
+    clearTimeout(saveT);
+    saveT=setTimeout(function(){ try{ localStorage.setItem(KEY,window.scrollY); }catch(e){} },120);
+  },{passive:true});
+  try{
+    var saved=parseFloat(localStorage.getItem(KEY));
+    if(saved>0){ window.scrollTo({top:saved,behavior:'instant'}); }
+  }catch(e){}
+
+  update();
+  requestAnimationFrame(function(){ slides[0].setAttribute('data-deck-active',''); });
+
+  // ---- Keyboard nav ----
+  function go(dir){
+    var st=window.scrollY, target=null;
+    for(var i=0;i<slides.length;i++){
+      var top=slides[i].offsetTop;
+      if(dir>0 && top>st+10){ target=top; break; }
+      if(dir<0 && top<st-10){ target=top; }
+    }
+    if(target!==null) window.scrollTo({top:target,behavior:'smooth'});
+  }
+  window.addEventListener('keydown',function(e){
+    var ae=document.activeElement;
+    if(ae && (ae.tagName==='TEXTAREA'||ae.tagName==='INPUT'||ae.isContentEditable)) return;
+    if(e.key==='ArrowDown'||e.key==='PageDown'||e.key==='ArrowRight'){ e.preventDefault(); go(1); }
+    else if(e.key==='ArrowUp'||e.key==='PageUp'||e.key==='ArrowLeft'){ e.preventDefault(); go(-1); }
+  });
+  if(nextA) nextA.addEventListener('click',function(e){ e.preventDefault(); go(1); });
+  if(prevA) prevA.addEventListener('click',function(e){ e.preventDefault(); go(-1); });
+})();
+</script>
+
+
+
+</body></html>
